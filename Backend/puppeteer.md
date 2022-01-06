@@ -1,6 +1,6 @@
 # Puppeteer
 
-Note: I just went through a lot of blogs, and apparently [puppeteer](https://pptr.dev/) is lot like [playwright](https://playwright.dev/)
+Note: I just went through a lot of blogs, and apparently [puppeteer](https://pptr.dev/) is lot like [playwright](https://playwright.dev/), the biggest difference being that playwright supports more browsers than just Chrome. Apparently some of the core devs left puppeteer (Created by Google) to create playwright (created by Microsoft).
 
 Run `npm i puppeteer` to get started.
 `const puppeteer = require('puppeteer')`
