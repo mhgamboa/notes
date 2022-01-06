@@ -10,7 +10,7 @@ Run `npm i puppeteer` to get started.
 ```
 const start = async () => {
     const browser = await puppeter.launch(); // Launches the headless browser
-    const page = qwait browser.newPage(); // Opens a new webpage in the browser
+    const page = await browser.newPage(); // Opens a new webpage in the browser
     await page.goto("https://website.com/path/name");
     ... // Do whatever you want (screenshot, scrape, etc.)
     await browser.close();
