@@ -9,8 +9,16 @@
    - It has no file extension
    - Syntax is `<process type>: <command>`. Example: `web: npm start`
    - The `web` process type is how you recieve external HTTP traffic
-3. `heroku create unique-app-name` -> creates heroku app
-4. `git push heroku main` -> deploys heroku app
-5. `heroku ps:scale web=1` -> Ensures at leasont one instance of app is running
-6. `heroku open` -> opens deployed app in browser
-7. `heroku logs --tail` -> view running stream of logs. `control+c` to stop streaming the logs
+3. Add a "heroku-postbuild" script. This is a hook that enables further builds in subdirectory Example:
+
+```
+"install-client": "cd client && npm install",
+"build-client": "cd client && npm run build",
+"heroku-postbuild": "npm run install-client && npm run build-client"
+```
+
+4. `heroku create unique-app-name` -> creates heroku app
+5. `git push heroku main` -> deploys heroku app
+6. `heroku ps:scale web=1` -> Ensures at leasont one instance of app is running
+7. `heroku open` -> opens deployed app in browser
+8. `heroku logs --tail` -> view running stream of logs. `control+c` to stop streaming the logs

@@ -6,7 +6,7 @@ Then require the packages:
 
 ```
 import fetch from "node-fetch";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 import pretty from "pretty";
 ```
 
@@ -39,3 +39,40 @@ const getHTML = async (url) => {
 ```
 
 # Cheerio
+
+Cheerio likes looking like jQuery. So the first thing you'll doo with cheerio is load the html into a dollar sign ($). Example:
+
+```
+const $ = cheerio.load(body);
+```
+
+Then you can access the DOM like you would jQuery. Examples:
+
+```
+const $ = cheerio.load(
+  <ul id="fruits">
+    <li class="apple">Apple</li>
+    <li class="orange">Orange</li>
+    <li class="pear">Pear</li>
+  </ul>
+)
+
+$('.apple', '#fruits').text(); // => Apple
+$('ul .pear').attr('class'); // => pear
+$('li[class=orange]').html(); // => Orange
+const entireHTML = $.html()
+
+```
+
+**So Putting it all together:**
+
+```
+const getHTML = async (url) => {
+    const response = await fetch(url);
+    const body = await response.text();
+    const $ = cheerio.load(body);
+
+
+    return body;
+}
+```
