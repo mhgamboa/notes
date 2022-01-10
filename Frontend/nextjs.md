@@ -10,7 +10,113 @@
 1. The folder structure of the `my-app/pages` Represents your website path
    - `.../my-app/pages/api/hello.js` would create the route `http://localhost:3000/api/hello`
    - `.../my-app/pages/aboutMe/index.js` would create the route `http://localhost:3000/aboutMe`
-2. Using Brackets `[]` signifies that the route will be dynamic (See the [API Endpoints](<(https://github.com/mhgamboa/notes/blob/main/Backend/nextjs.md)#api-endpoints>) section for an example details)
+
+### Dynamic Routing
+
+1. Using Brackets `[]` signifies that the route will be dynamic
+   - `.../my-app/pages/products/[productId].js` would create the route `http://localhost:3000/products/:productId`
+2. Acess the query params (`:productId` in this example) using the `useRouter` hook. Example:
+
+```
+// http://localhost:3000/products/:productId
+import {useRouter} from "next/router";
+
+const productId = () => {
+  const router = useRouter();
+  const { productId } = router.query;
+  return <h1> This is product Id number is {productId}</h1>
+}
+
+export default productId;
+
+```
+
+3. If there is a conflict between a dynamic route and a predefined route, Next.js will always match the predefined route first
+
+#### Nested Routes
+
+- **Nested Routes** can be handled in two different ways:
+  1. Via the folder structure:`.../my-app/pages/products/[productId]/reviews/[reviewId].js` would create the route `http://localhost:3000/products/:productId/reviews/:reviewId`
+  2. Via `[...params].js`
+     -Placing a `[...params].js` in ``.../my-app/pages/products/[...params].js` would handle all undefined routes that start with `http://localhost:3000/products/`
+     -You could have `http://localhost:3000/products/:productId/reviews/:reviewId/foo/bar/baz` and the `[...params].js` would still handle it
+  3. **`router.query.params` would become an array with each item being a different level of nesting.** Example:
+
+```
+
+import {useRouter} from 'next/router';
+
+// Located in ../my-app/pages/products
+// For http://localhost:3000/products/:productId/reviews/:reviewId
+const Doc = () => {
+  const router = userouter();
+  const {params = []} = router.query; // Sets default value, since params is undefined on initial render
+
+  console.log(params); // logs [:productId, review, :reviewId]
+
+  return()
+}
+```
+
+See also [Accessing Parameters](https://github.com/mhgamboa/notes/blob/main/Backend/nextjs.md#acessing-params).
+
+## Accessing Params
+
+1. You can access all parameters using the `useRouter` hook. Example:
+
+```
+// .../my-app/products/[productId].js
+
+// http://localhost:3000/products/100?foo=bar&fat=cat
+import {useRouter} from "next/router";
+
+const productId = () => {
+  const router = useRouter();
+
+  const productId = router.query.productId; // equals 100
+  const foo = router.query.productId; // equals bar
+  const bar = router.query.productId; // equals cat
+  ...
+  return ()
+}
+
+export default productId;
+```
+
+## Client-Side Navigation (Links)
+
+- When navigating within your site you nest all `<a>` tags within `<Link>`, which must be imported. `href` attributes will go in the `<Link>` tag
+  - Navigating outside of your page can just use the regular `<a>` tag with no `<Link>`
+
+```
+import Link from 'next/link
+
+const home = () => {
+  return (
+    <div>
+      <Link href="/about-me">
+        <a>About Me</a>
+      </Link>
+    </div>
+  )
+}
+```
+
+- To **navigate within dynamic routes** you'll have to use string interpolation. You'll probably have to pass down props as well. Example:
+
+```
+import Link from 'next/link
+
+const home = ({productId = 100 }) => {
+  return (
+    <div>
+      <Link href="/products/${productId}" replace> //replace attribute refreshes to the base url
+        <a>product {ProductId}</a>
+      </Link>
+    </div>
+  )
+}
+```
 
 ## Components
 
