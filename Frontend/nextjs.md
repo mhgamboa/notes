@@ -35,12 +35,18 @@ export default productId;
 
 #### Nested Routes
 
-- **Nested Routes** can be handled in two different ways:
-  1. Via the folder structure:`.../my-app/pages/products/[productId]/reviews/[reviewId].js` would create the route `http://localhost:3000/products/:productId/reviews/:reviewId`
-  2. Via `[...params].js`
-     -Placing a `[...params].js` in ``.../my-app/pages/products/[...params].js` would handle all undefined routes that start with `http://localhost:3000/products/`
-     -You could have `http://localhost:3000/products/:productId/reviews/:reviewId/foo/bar/baz` and the `[...params].js` would still handle it
-  3. **`router.query.params` would become an array with each item being a different level of nesting.** Example:
+- **Nested Routes** can be handled in two different ways: folder structure and catch all routes.
+
+1. Create a folder structure as such:`.../my-app/pages/products/[productId]/reviews/[reviewId].js` would create the route `http://localhost:3000/products/:productId/reviews/:reviewId`
+
+- This works but gets too complex with big apps
+
+#### Nested Dynamic routing (Catch All routes)
+
+1. Via `[...params].js`
+   -Placing a `[...params].js` in ``.../my-app/pages/products/[...params].js` would handle all undefined routes that start with `http://localhost:3000/products/`
+   -You could have `http://localhost:3000/products/:productId/reviews/:reviewId/foo/bar/baz` and the `[...params].js` would still handle it
+2. **`router.query.params` would become an array with each item being a different level of nesting.** Example:
 
 ```
 
@@ -60,7 +66,7 @@ const Doc = () => {
 
 See also [Accessing Parameters](https://github.com/mhgamboa/notes/blob/main/Backend/nextjs.md#acessing-params).
 
-## Accessing Params
+### Accessing Params
 
 1. You can access all parameters using the `useRouter` hook. Example:
 
@@ -83,9 +89,12 @@ const productId = () => {
 export default productId;
 ```
 
-## Client-Side Navigation (Links)
+### Navigation
+
+#### Links
 
 - When navigating within your site you nest all `<a>` tags within `<Link>`, which must be imported. `href` attributes will go in the `<Link>` tag
+  - Without `<Link>` a new server request will be made, thus removing all client state
   - Navigating outside of your page can just use the regular `<a>` tag with no `<Link>`
 
 ```
@@ -118,31 +127,13 @@ const home = ({productId = 100 }) => {
 }
 ```
 
-## Components
+#### Programatic Routing
 
-1. Components should live in `my-app/components` folder
-2. Group components within their own sub directory. Example:
+- You never want to alter the URL directly since the browser will make a new request to the server and you will lose state
+- Change the url with `router.push("/localPath")` instead of using `window.location.href`
+  - You can also use `router.replace("/localPath")` if you don't want to add to the browser history stack (Think of the back button)
 
-```
-.../my-app/components/Navbar/Navbar.js
-.../my-app/components/cards/Card.js
-```
-
-## Styling
-
-You can styling Next.js Projects in 3 ways:
-
-1. Gobal style sheets - automatically exists in `my-app/styles/globals.css`. Applies styles across the entire app.
-   - Styles are imported into `_app.js`
-2. CSS Modules - Allows you to write unique styles for each page/component.
-   - These CSS files are saved as `pageName.module.css` in the `my-app/styles` folder
-   - `import styles from ../styles/pageName.module.css`
-   - Implement the styles with `<p className={styles.className}></p>`
-3. style JSX
-
-I've watched two different tutorials, and they both only use the global style sheets and the CSS Modules.
-
-## API Endpoints
+### API Endpoints
 
 - API endpoints live in `my-app/pages/api`
 - API Endpoints must use the following syntax:
@@ -167,3 +158,32 @@ export default function handler(req, res) {
   res.status(200).json({id}); // sends the json { "id": id }
 }
 ```
+
+### 404
+
+- Next will automatically 404 unknown routes, but you can customize it
+- in `.../my-app/pages/404.js` you can create a page however you want
+
+## Components
+
+1. Components should live in `my-app/components` folder
+2. Group components within their own sub directory. Example:
+
+```
+.../my-app/components/Navbar/Navbar.js
+.../my-app/components/cards/Card.js
+```
+
+## Styling
+
+You can styling Next.js Projects in 3 ways:
+
+1. Gobal style sheets - automatically exists in `my-app/styles/globals.css`. Applies styles across the entire app.
+   - Styles are imported into `_app.js`
+2. CSS Modules - Allows you to write unique styles for each page/component.
+   - These CSS files are saved as `pageName.module.css` in the `my-app/styles` folder
+   - `import styles from ../styles/pageName.module.css`
+   - Implement the styles with `<p className={styles.className}></p>`
+3. style JSX
+
+I've watched two different tutorials, and they both only use the global style sheets and the CSS Modules.
