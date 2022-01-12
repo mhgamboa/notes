@@ -193,15 +193,15 @@ These notes also cover **Client-side data fetching** & **Combining pre-rendering
 1. To Fetch Data at Build Time with SSG **you must use the `getStaticProp()` hook**. You make when you export default a page/component, you also export a function called `getStaticProp()`, where data is fetched and parsed. Then return an object with the key/value pair `{props: {key1: parseddata.value1}}`. EXAMPLE:
 
 ```
-const UserList = (props1) => {
+const ArticlesList = (props) => {
   return (
     <div>
-      {props1.map(foo=>{...})}
+      {props.articles.map(foo=>{...})}
     </div>
   )
 }
 
-export default UserList;
+export default ArticlesList;
 
 export async function getStaticProps() {
   const res = await fetch("url");
@@ -209,7 +209,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      props1: data
+      articles: data
     }
   }
 }
