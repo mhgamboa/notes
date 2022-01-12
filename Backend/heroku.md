@@ -27,7 +27,7 @@
 ### cloning a heroku Project
 
 1. `heroku git:clone -a heroku-app-name`
-2. `cd heroku-app name`
+2. `cd heroku-app-name`
 3. `git add origin git@github.com:mhgamboa/repository-name.git`
    - **Note:** the repository name will probably differ from Heroku app name
 4. `git push heroku main` -> deploys heroku app
