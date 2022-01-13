@@ -1,4 +1,6 @@
-## Heroku
+# Heroku
+
+## Create a Heroku App
 
 [Relevant article](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 
@@ -32,11 +34,17 @@
 8. `heroku open` -> opens deployed app in browser
 9. `heroku logs --tail` -> view running stream of logs. `control+c` to stop streaming the logs
 
-### cloning a heroku Project
+## cloning a heroku Project
 
 1. `heroku git:clone -a heroku-app-name`
 2. `cd heroku-app-name`
-3. `git add origin git@github.com:mhgamboa/repository-name.git`
-   - **Note:** the repository name will probably differ from Heroku app name
-4. `git push heroku main` -> deploys heroku app
-5. `git push origin main` -> pushes changes to github
+3. If you want to clone the Heroku Project:
+   1. `git remote add origin git@github.com:mhgamboa/repository-name.git`
+      - **Note:** the repository name will probably differ from Heroku app name
+4. If you want to clone the Github Project:
+   1. `git remote add heroku https://git.heroku.com/heroku-project-name.git`
+      - **Note:** the repository name will probably differ from Heroku app name
+5. `git push heroku main` -> deploys heroku app
+6. `git push origin main` -> pushes changes to github
+
+## Deploying in a Subdirectory
