@@ -13,3 +13,4 @@ Watch [this video](https://youtu.be/XpEyRVEOFuU).
    - Token can have extra features like expiries, set limits on requests.
 3. OAuth 2.0:
    - Does not authenticate, only authorizes
+   -
