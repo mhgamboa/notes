@@ -14,3 +14,9 @@ Watch [this video](https://youtu.be/XpEyRVEOFuU).
 3. OAuth 2.0:
    - Does not authenticate, only authorizes
    -
+
+EXAMPLE:
+
+```
+
+```
