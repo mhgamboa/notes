@@ -18,6 +18,7 @@ All the notes I take are here so I will always remember.
 
 1. [Nextjs](https://github.com/mhgamboa/notes/blob/main/Backend/nextjs.md)
 
-### [Backend](https://github.com/mhgamboa/notes/tree/main/Other)
+### [Other](https://github.com/mhgamboa/notes/tree/main/Other)
 
 1. [ESLint](https://github.com/mhgamboa/notes/blob/main/Other/eslint.md)
+1. [Husky](https://github.com/mhgamboa/notes/blob/main/Other/husky.md)
