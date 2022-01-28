@@ -166,7 +166,7 @@ export default function handler(req, res) {
 
 ## Pre-Rendering & Data Fetching
 
-Pre-rendergin means the data is loaded before it is received by the browser. Create-React-App renders the web page after the document is received. Pros of pre-rendering:
+Pre-rendering means the data is loaded before it is received by the browser. Create-React-App renders the web page after the document is received. Pros of pre-rendering:
 
 1. Pages load faster, as less Javascript needs to be run
 2. Pre-rendering helps with SEO
@@ -174,13 +174,14 @@ Pre-rendergin means the data is loaded before it is received by the browser. Cre
 There are 2 types of pre-rendering:
 
 1. Static Site Generation (SSG)
-   1.Without data
-   2.with data
-   3.Inceremental Static Generation
-   4.Dynamic parameters when fetching data
+
+   1. Without data (default)
+   2. With data (`getStaticProps()`)
+   3. Inceremental Static Generation
+   4. Dynamic parameters when fetching data
 
 2. Server-side Rendering (SSR)
-   -Data fetching
+   1. Data fetching
 
 These notes also cover **Client-side data fetching** & **Combining pre-rendering with client-side data-fetching**
 
@@ -190,7 +191,7 @@ These notes also cover **Client-side data fetching** & **Combining pre-rendering
 
 #### SSG With Data (Fetch Data at build time)
 
-1. To Fetch Data at Build Time with SSG **you must use the `getStaticProp()` hook**. You make when you export default a page/component, you also export a function called `getStaticProp()`, where data is fetched and parsed. Then return an object with the key/value pair `{props: {key1: parseddata.value1}}`. EXAMPLE:
+1. To Fetch Data at Build Time with SSG **you must use the `getStaticProp()` hook**. You make this when you export a **page (not a component)**, you also export a function called `getStaticProp()`, where data is fetched and parsed. Then return an object with the key/value pair `{props: {key1: parseddata.value1}}`. EXAMPLE:
 
 ```
 const ArticlesList = (props) => {
