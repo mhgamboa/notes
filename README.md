@@ -18,6 +18,8 @@ All the notes I take are here so I will always remember.
 
 1. [Nextjs](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md)
 
+### [Javascript](https://github.com/mhgamboa/notes/tree/main/Javascript)
+
 ### [Other](https://github.com/mhgamboa/notes/tree/main/Other)
 
 1. [ESLint](https://github.com/mhgamboa/notes/blob/main/Other/eslint.md)
