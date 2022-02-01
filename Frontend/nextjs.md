@@ -93,9 +93,10 @@ export default productId;
 
 #### Links
 
-- When navigating within your site you nest all `<a>` tags within `<Link>`, which must be imported. `href` attributes will go in the `<Link>` tag
+- When navigating within your site you nest all `<a>` tags within `<Link>`, which must be imported. `href` attributes will go in the `<Link>` tag. (Not the `<a>` tag)
   - Without `<Link>` a new server request will be made, thus removing all client state
   - Navigating outside of your page can just use the regular `<a>` tag with no `<Link>`
+  - **If the child is not an an `<a>` tag** you must us the `passHref` attribute in the `<Link>` tag
 
 ```
 import Link from 'next/link
@@ -105,6 +106,9 @@ const home = () => {
     <div>
       <Link href="/about-me">
         <a>About Me</a>
+      </Link>
+      <Link href="/about-me" passhref>
+        <h2>About You</>
       </Link>
     </div>
   )
@@ -214,6 +218,53 @@ export async function getStaticProps() {
     }
   }
 }
+```
+
+##### SSG with data in Dynamic routes
+
+1. `getStaticProps()` must receive an argument `getStaticProps(context)`. `context` is an object with a key called params that allows you to acces the URL params.
+2. You must use `getStaticPaths()` which tells Next.js all the possible values of `[postId].js` that will exist. `getStaticPaths()` must return an object with a `paths` key, which is an array of objects relating to each each unique dynamic param
+   - `getStaticPaths()` must also have a key/value pair `fallback: false`
+
+Example:
+
+```
+// In file called ./root-project/pages/posts/[postId].js
+export default post = ({ post })=>{
+  return (
+    <div>
+      <h1>post.id</h1>
+      <p>{post.body}</p>
+    </div>
+  )
+}
+
+export async getStaticPaths = () => {
+  const res = await fech(`url/posts`); //Fetch all the posts
+  const data = await res.json(); //parse the data to json
+
+  const paths = data.map(post => ({
+    params: {
+      postId: `${post.id}`
+    }
+  }));
+  return {
+    paths,
+    fallback: false
+    };
+}
+
+export async getStaticProps = (context) => {
+  {postId} = context.params;
+  fetch(`url/${postID}`);
+
+  return {
+    props: {
+      post: data
+    }
+  };
+}
+
 ```
 
 ## Components

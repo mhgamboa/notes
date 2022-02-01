@@ -17,8 +17,12 @@ All the notes I take are here so I will always remember.
 ### [Frontend](https://github.com/mhgamboa/notes/tree/main/Frontend)
 
 1. [Nextjs](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md)
+1. [Nextjs](https://github.com/mhgamboa/notes/blob/main/Frontend/chartjs.md)
 
 ### [Javascript](https://github.com/mhgamboa/notes/tree/main/Javascript)
+
+1. [Dates](https://github.com/mhgamboa/notes/blob/main/Javascript/dates.md)
+2. [TypeScript](https://github.com/mhgamboa/notes/blob/main/Javascript/typescript.md)
 
 ### [Other](https://github.com/mhgamboa/notes/tree/main/Other)
 
