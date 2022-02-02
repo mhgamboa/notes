@@ -223,8 +223,14 @@ export async function getStaticProps() {
 ##### SSG with data in Dynamic routes
 
 1. `getStaticProps()` must receive an argument `getStaticProps(context)`. `context` is an object with a key called params that allows you to acces the URL params.
-2. You must use `getStaticPaths()` which tells Next.js all the possible values of `[postId].js` that will exist. `getStaticPaths()` must return an object with a `paths` key, which is an array of objects relating to each each unique dynamic param
-   - `getStaticPaths()` must also have a key/value pair `fallback: false`
+2. You must use `getStaticPaths()` which tells Next.js all the possible paths of `[postId].js` that will exist.
+   - `getStaticPaths()` must return an object with a `paths` key, which is an array of objects relating to each each unique dynamic param
+   - The returned `getStaticPaths()` object must also have a `fallback` key
+     - `fallback: False` -> Paths not returned by `getStaticPaths()` will result in the 404 page
+     - `fallback: True` -> Paths not returned by `getStaticPaths()` don't result in a 404 page. It show a fallback version, which is a static HTML page fetched & created at runtime, NOT buildtime. You'll need to create a useRouter.fallback in the component
+       - **Use Case:** if you have thousands of pages, but only want to load them all at the same time, you can have `getStaticPaths()` only load a couple, and then statically render the rest when necessary
+     - `fallback: "blocking"` -> Like `True`, but does it asynchronously, and will take time to load
+       - **Use Case:** Preference. Vercel recommends True, unless you have issues
 
 Example:
 
@@ -248,6 +254,7 @@ export async getStaticPaths = () => {
       postId: `${post.id}`
     }
   }));
+
   return {
     paths,
     fallback: false
@@ -266,6 +273,21 @@ export async getStaticProps = (context) => {
 }
 
 ```
+
+#### Pros and Cons of SSG
+
+**Pros:**
+
+1. Can be build and cached on a CDN for super fast download speeds
+2. Better for SEO
+3. `getStaticPaths()` helps create dynamic data on static pages (best of both worlds)
+
+**Cons:**
+
+1. Build time can be horrendous
+2. Data can grow stale
+
+**Incremental Static Regeneration (ISR)** overcomes these deficits by rebuilding pages when data changes, without rebuilding your entire app. This is done with a `revalidate` key
 
 ## Components
 
