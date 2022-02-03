@@ -287,6 +287,8 @@ export async getStaticProps = (context) => {
 1. Build time can be horrendous
 2. Data can grow stale
 
+#### Incremental Static Regeneration (ISR)
+
 **Incremental Static Regeneration (ISR)** overcomes these deficits by rebuilding pages when data changes, without rebuilding your entire app. This is done with a `revalidate` key within the `getStaticProps()` return object. Example:
 
 ```
@@ -303,6 +305,7 @@ export async getStaticProps = (context) => {
 }
 ```
 
+- With the `revalidate` key, ISR will only generate a new page **after** a request has been made, and the old HTML static page has been served
 
 ## Components
 
