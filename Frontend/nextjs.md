@@ -287,7 +287,22 @@ export async getStaticProps = (context) => {
 1. Build time can be horrendous
 2. Data can grow stale
 
-**Incremental Static Regeneration (ISR)** overcomes these deficits by rebuilding pages when data changes, without rebuilding your entire app. This is done with a `revalidate` key
+**Incremental Static Regeneration (ISR)** overcomes these deficits by rebuilding pages when data changes, without rebuilding your entire app. This is done with a `revalidate` key within the `getStaticProps()` return object. Example:
+
+```
+export async getStaticProps = (context) => {
+  {postId} = context.params;
+  fetch(`url/${postID}`);
+
+  return {
+    props: {
+      post: data
+    },
+    revalidate: 60 // Revalidate every 60 seconds
+  };
+}
+```
+
 
 ## Components
 
