@@ -11,6 +11,12 @@
    - `.../my-app/pages/api/hello.js` would create the route `http://localhost:3000/api/hello`
    - `.../my-app/pages/aboutMe/index.js` would create the route `http://localhost:3000/aboutMe`
 
+### UseRouter Hook
+
+**TODO: TAKE GOOD NOTES ON `UseRouter()` Hook**
+
+- Shallow Routing
+
 ### Dynamic Routing
 
 1. Using Brackets `[]` signifies that the route will be dynamic
@@ -364,6 +370,74 @@ export async getServerSideProps = () => {
 export async function getServerSideProps(context) {
 const { params, req, res } = context
 }
+```
+
+### Client Side Rendering
+
+**Client Side Fetching is good when:**
+
+1. You are generating a page that is private
+2. Doesn't need SEO
+3. Is user Specific
+4. When you want to fetch data from components
+   - `getStaticProps()` and `getServerSideProps()` can only fetch data from pages
+
+While you can use `useEffect()` to fetch data, **Next.js provides its own methods for client-side data fetching data called SWR** (Stale While Revalidate)
+
+#### useEffect()
+
+1. In `useEffect()` you can fetch data. Example:
+
+```
+import { useEffect } from 'react'
+
+const Dashboard = () => {
+  useEffect(() => {
+    fetchDashboardData = async () => {
+      const res = await fetch()
+    }
+    fetchDashboardData()
+  })
+}
+
+export default Dashboard
+```
+
+#### SWR
+
+- SWR is a React Hook library for data fetching
+
+1. Run `npm i swr`
+2. In your component use `const { data, error } = useSWR('dashboard', functionThatFetchesData)`
+   - `data` is the data returned. `error` is any error that occurs during the fetching
+
+```
+import useSWR from 'swr
+
+const fetcher = async () => {
+  const url = '';
+  const rest = await fetch (url);
+  const data = await res.json();
+  }
+
+const DashboardSWR = () => {
+  const { data, error } = useSWR('dashboard', fetcher);
+
+  if (error) return "An error has occurred fetching DashboardSWR";
+  if (data) return "Loading"; // Displayed in browser while data is loading
+
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <h2>Posts - {data.posts}</h2>
+      <h2>Likes - {data.likes}</h2>
+      <h2>Followers - {data.followers}</h2>
+      <h2>Following - {data.following}</h2>
+    </div>
+  )
+}
+
+export default DashboardSWR;
 ```
 
 ## Components
