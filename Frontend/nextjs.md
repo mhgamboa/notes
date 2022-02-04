@@ -204,25 +204,29 @@ There are 3 methods to fetch external data:
 1. **Static Site Generation (SSG)** -> Only used on **pages** (Also called page components), not **components**
 
    - **To statically generate sites, you must use `getStaticProps()`**, which fetches data and builds pages at build time
-     - `getStaticPaths()` is exported in the same file as the page component
+     - `getStaticProps()` is exported in the same file as the page component
      - `getStaticProps()` accepts an argument`context` which allows you to access any dynamic url path that the client has requested
-     - `getStaticProp()` must return an object. This object contains two important key/value pairs:
+     - `getStaticProps()` must return an object. This object contains two important key/value pairs:
        - `props` (required) which contains the data that is passed to the page component as props
-       - `revalidate` (optional) which allows Next.js to rebuild a page without rebuilding an entire website. See [Incremental Static Regeneration](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#incremental-static-regeneration-isr) below.
+       - `revalidate` (optional) which allows Next.js to rebuild a page without rebuilding an entire website. See [Incremental Static Regeneration below](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#incremental-static-regeneration-isr)
    - `getStaticPaths(context)` can be used with `getStaticProps()` to allow for statically generated dynamic routing (`[fileName].js`)
      - Essentially all `getStaticPaths()` does is tell Next.js how many pages to generate at build time
      - `getStaticPaths()` must return an object with 2 important keys: `{patchs, fallback}`
-       - `paths` (required) which is an array of objects relating to each each unique dynamic param/page to be generated
-         - Each object must have the the following key/value pair: `params: { [filename]: fetchedDataId. }` to correctly assign routes
+       - `paths` (required) which has a value that is an array of objects relating to each unique dynamic param/page to be generated
+         - Each object must have the the following key/value pair: `params: { [filename]: fetchedDataId }` to correctly assign routes to the generated pages
        - `fallback` (required)
          - A value of `false` says all unbuilt routes will generate a 404 error
          - A value of `true` Will do two things when an unbuilt route is requested:
            1. On the first request, a "fallback" version of the page will be served. This is defined in the page component
               - Example: `const router = useRouter(); if (router.isFallback) {return <div>Loading...</div>}` [See an example](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-pages)
-           2. While the "fallback" is being served, Next.js will statically build the required HTML/JSON and serve it as soon as possible.
+           2. While the "fallback" is being shown to the client, Next.js will statically build the required HTML/JSON and serve it as soon as possible
               - The built HTML/CSS will be served in future requests for the designated route
+           - `fallback` reduces the originaly build time, by subsequently building out pages as needed
 
 2. **Server Side Rendering (SSR)** -> Only used on **pages** (Also called page components), not **components**
+
+3. **Client Side Rendering (CSR)** -> Only used on **components**, not **pages** (Also called page components)
+   - `getServerSideProps()`
 
 ### Static Site Generation (SSG)
 
@@ -230,10 +234,10 @@ There are 3 methods to fetch external data:
 
 #### SSG With Data `getStaticProps()`
 
-- To Fetch Data at Build Time with SSG **you must use the `getStaticProp()` hook**.
+- To Fetch Data at Build Time with SSG **you must use the `getStaticProps()` hook**.
 - `getStaticProps()` is exported in the same file where a **page (not a component)** is exported.
-- `getStaticProp()` is where data is fetched and parsed.
-- `getStaticProp()` returns an object two important key/value pairs:
+- `getStaticProps()` is where data is fetched and parsed.
+- `getStaticProps()` returns an object two important key/value pairs:
   - `props` which passes data to the page component as props
   - `revalidate` which allows Next.js to rebuild react pages without rebuilding an entire website. Read more about [Incremental Static Regeneration](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#incremental-static-regeneration-isr) below.
 - `getStaticProps(context)` takes one argument `context`.
@@ -360,9 +364,12 @@ export async getStaticProps = (context) => {
 
 **Pros:**
 
+1. Data will always be up to date
+2. SEO as HTML is build before being sent to the client
+
 **Cons:**
 
-- SSR is slower than SSG. **Use SSR only when necessary.**
+1.  SSR is slower than SSG. **Use SSR only when necessary.**
 
 #### getServerSideProps()
 
