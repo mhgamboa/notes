@@ -286,6 +286,7 @@ export async getStaticProps = (context) => {
 
 1. Build time can be horrendous
 2. Data can grow stale
+3. You don't get access to the request object (Can't GET user specified content)
 
 #### Incremental Static Regeneration (ISR)
 
@@ -306,6 +307,64 @@ export async getStaticProps = (context) => {
 ```
 
 - With the `revalidate` key, ISR will only generate a new page **after** a request has been made, and the old HTML static page has been served
+
+### Server Side Rendering (SSR)
+
+#### Pros and Cons
+
+**Pros:**
+
+**Cons:**
+
+- SSR is slower than SSG. **Use SSR only when necessary.**
+
+#### getServerSideProps()
+
+1. `getServerSideProps()` is how you get these data from your database. You can write server-side code directly in `getServerSideProps()` (fs module, DB queries, etc.)
+2. `getServerSideProps()` logic will never run on the client-side. The code won't even be bundled
+3. **Can only run in a page not a component**
+4. Should always return an object with a `props` key
+5. Runs at reqeust time
+   EXAMPLE:
+
+```
+const newsArticleList = ({ articles }) {
+  return (
+    {articles.map(article => (
+      <div key={article.id}>
+        <h2>
+          {article.id} {article.title} | {article.category}
+        </h2>
+      </div>
+    ))}
+  )
+}
+
+export default newsArticleList
+
+export async getServerSideProps = () => {
+  const url = ""
+  const res = await fetch(url)
+  const data = await response.json()
+
+  return {
+    props: {
+      article: data
+    }
+  }
+}
+
+```
+
+#### SSR with Dynamic pages
+
+1. `getServerSideProps(context)` also accepts the argument **`context` which is an object with 3 keys: params, req, res**. EXAMPLE:
+
+```
+export async function getServerSideProps(context) {
+const { params, req, res } = context
+}
+```
 
 ## Components
 
