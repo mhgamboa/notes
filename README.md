@@ -24,6 +24,13 @@ All the notes I take are here so I will always remember.
 1. [Dates](https://github.com/mhgamboa/notes/blob/main/Javascript/dates.md)
 2. [TypeScript](https://github.com/mhgamboa/notes/blob/main/Javascript/typescript.md)
 
+### [Testing](https://github.com/mhgamboa/notes/tree/main/Testing)
+
+1. [Jest](https://github.com/mhgamboa/notes/blob/main/testing/jest.md)
+2. [Jest](https://github.com/mhgamboa/notes/blob/main/testing/basics.md)
+3. [Puppeteer](https://github.com/mhgamboa/notes/blob/main/testing/basics.md)
+4. [puppeteer](https://github.com/mhgamboa/notes/blob/main/Backend/puppeteer.md)
+
 ### [Other](https://github.com/mhgamboa/notes/tree/main/Other)
 
 1. [ESLint](https://github.com/mhgamboa/notes/blob/main/Other/eslint.md)
