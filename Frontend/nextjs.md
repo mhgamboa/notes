@@ -204,13 +204,14 @@ There are 3 methods to fetch external data:
 1. **Static Site Generation (SSG)** -> Only used on **pages** (Also called page components), not **components**
 
    - **To statically generate sites, you must use `getStaticProps()`**, which fetches data and builds pages at build time
+     - **Essentially all `getStaticProps()` does is fetch the necessary data, and deliver it to the page component**
      - `getStaticProps()` is exported in the same file as the page component
      - `getStaticProps()` accepts an argument`context` which allows you to access any dynamic url path that the client has requested
      - `getStaticProps()` must return an object. This object contains two important key/value pairs:
        - `props` (required) which contains the data that is passed to the page component as props
        - `revalidate` (optional) which allows Next.js to rebuild a page without rebuilding an entire website. See [Incremental Static Regeneration below](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#incremental-static-regeneration-isr)
    - `getStaticPaths(context)` can be used with `getStaticProps()` to allow for statically generated dynamic routing (`[fileName].js`)
-     - Essentially all `getStaticPaths()` does is tell Next.js how many pages to generate at build time
+     - **Essentially all `getStaticPaths()` does is tell Next.js how many pages to generate at build time**
      - `getStaticPaths()` must return an object with 2 important keys: `{patchs, fallback}`
        - `paths` (required) which has a value that is an array of objects relating to each unique dynamic param/page to be generated
          - Each object must have the the following key/value pair: `params: { [filename]: fetchedDataId }` to correctly assign routes to the generated pages
@@ -225,8 +226,16 @@ There are 3 methods to fetch external data:
 
 2. **Server Side Rendering (SSR)** -> Only used on **pages** (Also called page components), not **components**
 
+   - **To perform Server Side Rendering, you must use `getServerSideProps()`**
+     - `getServerSideProps()` fetches data and provides said data to the page components at request time
+     - `getServerSideProps()` must be exported in the same file as the page componenet
+     - `getServerSideProps()` logic will never run on the client-side. The code won't even be bundled
+     - You can write server-side code directly in `getServerSideProps()` (fs module, DB queries, etc.)
+     - To pass the fetched data to the page component `getServerSideProps()` should return an object with a `props` key
+       - The page component will then take `props` as a parameter to receive the fetched data
+
 3. **Client Side Rendering (CSR)** -> Only used on **components**, not **pages** (Also called page components)
-   - `getServerSideProps()`
+   - `()`
 
 ### Static Site Generation (SSG)
 
