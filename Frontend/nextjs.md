@@ -233,9 +233,17 @@ There are 3 methods to fetch external data:
      - You can write server-side code directly in `getServerSideProps()` (fs module, DB queries, etc.)
      - To pass the fetched data to the page component `getServerSideProps()` should return an object with a `props` key
        - The page component will then take `props` as a parameter to receive the fetched data
+     - SSR with Dynamic pages
+       - `getServerSideProps(context)` also accepts the argument `context`, which has access to the url params
+       - **`context` which is an object with 3 keys: params, req, res**
 
 3. **Client Side Rendering (CSR)** -> Only used on **components**, not **pages** (Also called page components)
-   - `()`
+   - Instead of fetching data within the `useEffect()` hook, Next.js uses SWR, which is a React Hook library for data fetching
+     - To use the SWR hook:
+       - Run `npm i swr`
+       - `import useSWR from "swr"`
+       - In your component use `const { data, error } = useSWR('dashboard', functionThatFetchesData)` TODO: find out what the first argument is
+       - `data` is the data returned. `error` is any error that occurs during the fetching
 
 ### Static Site Generation (SSG)
 
