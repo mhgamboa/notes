@@ -61,3 +61,4 @@ All the notes I take are here so I will always remember.
 5. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8&t=1007s&disableadblock=1))
    1. Session Authentication
    2. OAuth
+6. React Query ([tutorial](https://www.youtube.com/watch?v=VtWkSCZX0Ec))

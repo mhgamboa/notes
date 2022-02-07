@@ -218,11 +218,14 @@ There are 3 methods to fetch external data:
        - `fallback` (required)
          - A value of `false` says all unbuilt routes will generate a 404 error
          - A value of `true` Will do two things when an unbuilt route is requested:
-           1. On the first request, a "fallback" version of the page will be served. This is defined in the page component
-              - Example: `const router = useRouter(); if (router.isFallback) {return <div>Loading...</div>}` [See an example](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-pages)
+           1. On the first request, a "fallback" version of the page will be served. This is defined in the page component Example:
+              - `import { useRouter } from 'next/router'`
+              - `const router = useRouter();`
+              - `if (router.isFallback) {return <div>Loading...</div>}`
+              - See another example [here](https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-pages)
            2. While the "fallback" is being shown to the client, Next.js will statically build the required HTML/JSON and serve it as soon as possible
               - The built HTML/CSS will be served in future requests for the designated route
-           - `fallback` reduces the originaly build time, by subsequently building out pages as needed
+              - `fallback` reduces the originaly build time, by subsequently building out pages as needed
 
 2. **Server Side Rendering (SSR)** -> Only used on **pages** (Also called page components), not **components**
 
@@ -238,12 +241,9 @@ There are 3 methods to fetch external data:
        - **`context` which is an object with 3 keys: params, req, res**
 
 3. **Client Side Rendering (CSR)** -> Only used on **components**, not **pages** (Also called page components)
-   - Instead of fetching data within the `useEffect()` hook, Next.js uses SWR, which is a React Hook library for data fetching
-     - To use the SWR hook:
-       - Run `npm i swr`
-       - `import useSWR from "swr"`
-       - In your component use `const { data, error } = useSWR('dashboard', functionThatFetchesData)` TODO: find out what the first argument is
-       - `data` is the data returned. `error` is any error that occurs during the fetching
+   - Instead of fetching data within the `useEffect()` hook, Next.js allows you to use external hook libraries for data fetching
+     - Two of the most popular are swr (which was created by Vercel) and react-query
+     - **Notes about querying are out of the scope of these notes. Check the [Frontend Folder](https://github.com/mhgamboa/notes/tree/main/Frontend) to find any applicable notes**
 
 ### Static Site Generation (SSG)
 
