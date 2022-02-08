@@ -11,12 +11,6 @@
    - `.../my-app/pages/api/hello.js` would create the route `http://localhost:3000/api/hello`
    - `.../my-app/pages/aboutMe/index.js` would create the route `http://localhost:3000/aboutMe`
 
-### UseRouter Hook
-
-**TODO: TAKE GOOD NOTES ON `UseRouter()` Hook**
-
-- Shallow Routing
-
 ### Dynamic Routing
 
 1. Using Brackets `[]` signifies that the route will be dynamic
@@ -39,40 +33,24 @@ export default productId;
 
 3. If there is a conflict between a dynamic route and a predefined route, Next.js will always match the predefined route first
 
-#### Nested Routes
+#### Nested Dynaimc Routes
 
 - **Nested Routes** can be handled in two different ways: folder structure and catch all routes.
 
-1. Create a folder structure as such:`.../my-app/pages/products/[productId]/reviews/[reviewId].js` would create the route `http://localhost:3000/products/:productId/reviews/:reviewId`
-
-- This works but gets too complex with big apps
-
-#### Nested Dynamic routing (Catch All routes)
-
-1. Via `[...params].js`
-   -Placing a `[...params].js` in ``.../my-app/pages/products/[...params].js` would handle all undefined routes that start with `http://localhost:3000/products/`
-   -You could have `http://localhost:3000/products/:productId/reviews/:reviewId/foo/bar/baz` and the `[...params].js` would still handle it
-2. **`router.query.params` would become an array with each item being a different level of nesting.** Example:
-
-```
-
-import {useRouter} from 'next/router';
-
-// Located in ../my-app/pages/products
-// For http://localhost:3000/products/:productId/reviews/:reviewId
-const Doc = () => {
-  const router = userouter();
-  const {params = []} = router.query; // Sets default value, since params is undefined on initial render
-
-  console.log(params); // logs [:productId, review, :reviewId]
-
-  return()
-}
-```
+1. Folder Structure
+   - Essentially just nest bracketed folders within each other. Example: `app/pages/products/[folderName]/reviews/[reviewId].js`
+     - In `[reviewId].js` use the following code: `import { userRouter } from 'next/router; const { productId, reviewId } = router.query;`
+     - This works but gets too complex with big apps. If you had 20 folders, you'd still have to create 20 `[reviewId].js` files
+2. Nested Dynamic routing (Catch All routes)
+   - Create a file called `[...filname].js` wherever you want the dynamic routing to start. (`[...params].js` is the conventional name)
+     - **Essentially `[...fileName].js` just catches all possible routes that will be sent to the current URL. 404 pages will not be automatically generated since, all routes are technically valid, and will be caught.**
+     - Example: instead of `app/pages/products/[folderName]/reviews/[reviewId].js` use `app/pages/[...params].js`
+   - To access the url parameters, use the following code: `import { userRouter } from 'next/router; const { params } = router.query;`
+     - `params` will return an array of url routes that was accessed
 
 See also [Accessing Parameters](https://github.com/mhgamboa/notes/blob/main/Backend/nextjs.md#acessing-params).
 
-### Accessing Params
+### Accessing Params (UseRouter Hook)
 
 1. You can access all parameters using the `useRouter` hook. Example:
 
@@ -137,7 +115,7 @@ const home = ({productId = 100 }) => {
 }
 ```
 
-#### Programatic Routing
+#### Editing the URL
 
 - You never want to alter the URL directly since the browser will make a new request to the server and you will lose state
 - Change the url with `router.push("/localPath")` instead of using `window.location.href`
@@ -503,6 +481,51 @@ const DashboardSWR = () => {
 
 export default DashboardSWR;
 ```
+
+## Api Routing
+
+1. Create a folder called `api` inside of your `pages` folder - folder Routing works just the same
+2. When you `export default` within api routes, you conventionally name functions "handler" Example: `export default function handler() {}`
+   - handler() takes 2 parameters: `handler(req, res){}`
+     - res works just like it does in express: `res.status(200).json({})`
+3. Code written within the `api` folder is never bundled. So it will never slow down the client
+4. CRUD requests:
+   - **GET:** GET requests are the default. Just use `const res = await fetch("/api/route")` to have Next.js "Query" itself
+   - **POST:** POST are defined in the 2nd parameter of `fetch()`. See example below.
+   - **DELETE:** POST are defined in the 2nd parameter of `fetch()`. See example below.
+   - **PATCH:** POST are defined in the 2nd parameter of `fetch()`. See example below.
+   - In `api` `handler()` function use `if (req.method === "GET") {} else if (req.method ==="POST") {} else if...`
+5. **You shouldn't request your own api in getStaticProps()!** You should instead just copy the logic performed in your API into `getStaticProps()` to save time (Or export a function to be used by both)
+
+Example:
+
+```
+const res = await fetch("/api/", {
+  method: "POST", //"POST", "DELETE", "PATCH", etc.
+  body: JSON.stringify(),
+  headers: {
+    "content-Type": "application/json"
+  }
+})
+
+const data = await res.json();
+```
+
+### API Dynamic Routing
+
+There are two ways to create Dynamic routes:
+
+1. create the folder `/api/v1/[itemId].js` **use the req object**
+   - To acces the route parameters of `/api/v1/:itemId`
+     - `export default function handler(req, res) {const {commentID} = req.query`
+2. Nested Dynamic routing (Catch All routes)
+   - Create a file called `[...filname].js` wherever you want the dynamic routing to start. (`[...params].js` is the conventional name)
+     - **Essentially `[...fileName].js` just catches all possible routes that will be sent to the current URL. 404 pages will not be automatically generated since, all routes are technically valid, and will be caught.**
+     - Example: instead of `api/[folderName]/reviews/[reviewId].js` use `api/[...params].js`
+   - To access the url parameters, use `req.query`
+     - `params` will return an array of url routes that was accessed
+   - **Optional Cactch All Routes** can act as an `index.js` of a folder as well.
+     - To use Optional catch all routes you ust use two brackets instead of one: `[[...filename]].js`
 
 ## Components
 
