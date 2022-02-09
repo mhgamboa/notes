@@ -73,7 +73,7 @@ const productId = () => {
 export default productId;
 ```
 
-### Navigation
+### In-site Navigation
 
 #### Links
 
@@ -102,12 +102,12 @@ const home = () => {
 - To **navigate within dynamic routes** you'll have to use string interpolation. You'll probably have to pass down props as well. Example:
 
 ```
-import Link from 'next/link
+import Link from 'next/link'
 
 const home = ({productId = 100 }) => {
   return (
     <div>
-      <Link href="/products/${productId}" replace> //replace attribute refreshes to the base url
+      <Link href="/products/${productId}" replace> // Replace the current history state instead of adding a new url into the stack
         <a>product {ProductId}</a>
       </Link>
     </div>
@@ -482,7 +482,7 @@ const DashboardSWR = () => {
 export default DashboardSWR;
 ```
 
-## Api Routing
+## API Routing
 
 1. Create a folder called `api` inside of your `pages` folder - folder Routing works just the same
 2. When you `export default` within api routes, you conventionally name functions "handler" Example: `export default function handler() {}`
@@ -539,14 +539,30 @@ There are two ways to create Dynamic routes:
 
 ## Styling
 
-You can styling Next.js Projects in 3 ways:
+### Global Styles
 
-1. Gobal style sheets - automatically exists in `my-app/styles/globals.css`. Applies styles across the entire app.
-   - Styles are imported into `_app.js`
-2. CSS Modules - Allows you to write unique styles for each page/component.
-   - These CSS files are saved as `pageName.module.css` in the `my-app/styles` folder
+1. Global style sheet - automatically exists in `app/styles/globals.css`. This file applies styles across the entire app.
+   - The style sheet found within `app/styles` should be imported into `_app.js`
+2. All global css libraries (Tailwindcss/Bootstrap/etc.) should be imported into `_app.js` as well
+
+### Component Styles
+
+1. To implement component level styling you must utilize **CSS Modules**
+2. These modules are saved as `pageOrComponentName.module.css`
+3. These CSS module files should be saved in the `my-app/styles` folder
+4. To implement styles into pages/components:
    - `import styles from ../styles/pageName.module.css`
-   - Implement the styles with `<p className={styles.className}></p>`
-3. style JSX
+   - `<div className={style.className}></div>`
+5. Using different CSS modules allows you to use the same classNames accross different components
+   - Next.js Adds a random string to classNames when the project is built to ensure that they don't conflict with one another
+6. Styles defined within CSS modules override the globally defined styles
 
-I've watched two different tutorials, and they both only use the global style sheets and the CSS Modules.
+### Sass/SCSS Styling
+
+I didn't care to watch [the video](https://www.youtube.com/watch?v=_14sPRuHcYw&list=PLC3y8-rFHvwgC9mj0qv972IO5DmD-H0ZH&index=52)...
+
+### CSS-in-JS styling
+
+Honestly, this section goes beyond the scope of these notes/what I want to study. Just know that there are packages called `styled-components` and `styled-jsx` that you can use to style your app.
+
+## Miscellaneous
