@@ -61,5 +61,14 @@ All the notes I take are here so I will always remember.
    3. S3
 5. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8&t=1007s&disableadblock=1))
    1. Session Authentication
+      - Cookie flags:
+        - `httpOnly: true` -> don't let JS code access cookies
+        - `secure: true` -> Only set cookies if website uses https
+        - `ephemeral: true` -> destroy cookies when the browser closes
    2. OAuth
+   3. Password Hashing
+      - bcrypt vs scrypt vs Argon2(i/d) (From what I can read, bcrypt was the standard, now Argon2 is becomin the standard)
+   4. Cross Site Request Forgery (`npm i csurf`)
+   5. `npm i helmet` -> Sets up a bunch of http headers that ensure security
+   6. Passport library to help with implementing security ()
 6. React Query ([tutorial](https://www.youtube.com/watch?v=VtWkSCZX0Ec))
