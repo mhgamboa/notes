@@ -563,6 +563,8 @@ I didn't care to watch [the video](https://www.youtube.com/watch?v=_14sPRuHcYw&l
 
 ### CSS-in-JS styling
 
-Honestly, this section goes beyond the scope of these notes/what I want to study. Just know that there are packages called `styled-components` and `styled-jsx` that you can use to style your app.
+Honestly, this section goes beyond the scope of these notes and what I want to study.
+
+Just know that there are packages called `styled-components` and `styled-jsx` that you can use to style your app.
 
 ## Miscellaneous

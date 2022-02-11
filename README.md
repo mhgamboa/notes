@@ -39,7 +39,8 @@ All the notes I take are here so I will always remember.
 
 1. Next.js (Learning Right Now)
 2. SQL (PostgresQL)
-3. [AWS](https://aws.amazon.com/pricing/) or [AWS Free Tiers](https://aws.amazon.com/pricing/)
+3. [Typescript](https://youtube.com/playlist?list=PLC3y8-rFHvwi1AXijGTKM0BKtHzVC-LSK)
+4. [AWS](https://aws.amazon.com/pricing/) or [AWS Free Tiers](https://aws.amazon.com/pricing/)
    1. Compute
       1. EC2?
       2. Lambda? (Free)
@@ -55,20 +56,26 @@ All the notes I take are here so I will always remember.
    1. Other
       1. Amazon SQS (Queue structure)
       1. Elasticache (Redis caching)
-4. Digital Ocean? (May be a stepping stone between Heroku and AWS)
+5. Digital Ocean? (May be a stepping stone between Heroku and AWS)
    1. Compute
    2. Droplets
    3. S3
-5. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8&t=1007s&disableadblock=1))
+6. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8&t=1007s&disableadblock=1))
    1. Session Authentication
       - Cookie flags:
         - `httpOnly: true` -> don't let JS code access cookies
         - `secure: true` -> Only set cookies if website uses https
         - `ephemeral: true` -> destroy cookies when the browser closes
    2. OAuth
-   3. Password Hashing
+   3. Password
+      - [Short Intro video](https://www.youtube.com/watch?v=--tnZMuoK3E)
       - bcrypt vs scrypt vs Argon2(i/d) (From what I can read, bcrypt was the standard, now Argon2 is becomin the standard)
    4. Cross Site Request Forgery (`npm i csurf`)
    5. `npm i helmet` -> Sets up a bunch of http headers that ensure security
    6. Passport library to help with implementing security ()
-6. React Query ([tutorial](https://www.youtube.com/watch?v=VtWkSCZX0Ec))
+7. React Query ([tutorial](https://www.youtube.com/watch?v=VtWkSCZX0Ec))
+8. NPM packages
+   1. [validator](https://www.npmjs.com/package/validator)
+   2. [ajv](https://www.npmjs.com/package/ajv)
+   3. [multer](https://www.npmjs.com/package/multer)
+   4. [passport](https://www.npmjs.com/package/passport) (See "Security" above)
