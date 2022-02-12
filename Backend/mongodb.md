@@ -15,6 +15,9 @@ const main = async () => {
     const client = new MongoClient(process.env.ATLAS_URI, options);
     await client.connect();
 
+    const db = client.db('dbName');
+    const collection = db.collection('collectionName');
+
   } catch(err) {
     console.error(err)
   } finally {
