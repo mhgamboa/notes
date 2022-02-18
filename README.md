@@ -60,7 +60,7 @@ All the notes I take are here so I will always remember.
    1. Compute
    2. Droplets
    3. S3
-6. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8&t=1007s&disableadblock=1))
+6. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8)
    1. Session Authentication
       - Cookie flags:
         - `httpOnly: true` -> don't let JS code access cookies

@@ -29,6 +29,58 @@ const main = async () => {
 - When your done with your connection you'll want to run `client.close()` to close the connection
 - `app.use(express.json())` Parses the data sent in a post request
 
+## Performing CRUD Operations
+
+- **Queries** are json objects that specify what your looking for. Example:
+
+```
+const query = {
+  runtime: { $lt: 15 },
+  title: "The Room"
+};
+
+```
+
+**Query Operators**
+
+- **$eq:** equal to
+- **$ne:** not equal to
+- **$gt:** greater than
+- **$lt:** less than
+- **$gte:** greater than or equal to
+- **$lte:** less than or equal to
+- **EXAMPLE:** db.trips.find({ "tripduration": { "$lte" : 70 }, "usertype": { "$ne": "Subscriber" } }).pretty()
+
+**Logic Operators**
+
+- $or: match one query clause
+- $nor: anything doat doesn't match both query clauses (kind of like a combination of $not and $or)
+  - These three share common syntax by using an array. Example: {"$logic":[{filter1}, {filter2}] }
+- $and: match all query clauses
+  - A lot of times $and is used implicitly without you needing to use it. Example:
+    - {"$and": [{"student_id": {"$gt": 25} }, {"student_id": {"$lt": 100}} ]} versus
+    - {"student_id": {"$gt": 25, "$lt": 100}}
+    - Generally speaking you only need to use $and when you use the same operator more than once
+- $not - negates the query requriement. Example:
+  - $not syntax example: `{"student_id": {"$not": {"$gt": 25}} }`
+
+**$expr**
+
+- $expr allows the use of aggregation expressions (More on that later)
+- $expr allows for the use of variables. You just have to use a $ to denote what the variable is. Example:
+  - `db.trips.find({ "$expr": { "$eq": [ "$end station id", "$start station id"] }}).count()`
+
+### Create
+
+### Read
+
+- To **GET** a single document: `const document = await collection.findOne(query, options);`
+- To **GET** multiple document: ` const cursor = collection.find(query, options).toArrau();`
+
+### Update
+
+### Delete
+
 ## Other
 
 ### Miscellaneous Queries
