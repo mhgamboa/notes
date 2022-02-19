@@ -18,17 +18,25 @@ All the notes I take are here so I will always remember.
 1. [Nextjs](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md)
 1. [Chart.js](https://github.com/mhgamboa/notes/blob/main/Frontend/chartjs.md)
 
+## [Python](https://github.com/mhgamboa/notes/tree/main/Python)
+
+1. [Basics](https://github.com/mhgamboa/notes/blob/main/Python/basics.md)
+
 ## [Javascript](https://github.com/mhgamboa/notes/tree/main/Javascript)
 
 1. [Dates](https://github.com/mhgamboa/notes/blob/main/Javascript/dates.md)
 2. [TypeScript](https://github.com/mhgamboa/notes/blob/main/Javascript/typescript.md)
 
+## [Security](https://github.com/mhgamboa/notes/tree/main/Security)
+
+1. [Authentication](https://github.com/mhgamboa/notes/blob/main/Security/authentication.md)
+2. [PassportJS](https://github.com/mhgamboa/notes/blob/main/Security/passportjs.md)
+
 ## [Testing](https://github.com/mhgamboa/notes/tree/main/Testing)
 
-1. [Jest](https://github.com/mhgamboa/notes/blob/main/testing/jest.md)
-2. [Jest](https://github.com/mhgamboa/notes/blob/main/testing/basics.md)
-3. [Puppeteer](https://github.com/mhgamboa/notes/blob/main/testing/basics.md)
-4. [puppeteer](https://github.com/mhgamboa/notes/blob/main/Backend/puppeteer.md)
+1. [Basics](https://github.com/mhgamboa/notes/blob/main/Testing/basics.md)
+2. [Jest](https://github.com/mhgamboa/notes/blob/main/Testing/jest.md)
+3. [puppeteer](https://github.com/mhgamboa/notes/blob/main/Backend/puppeteer.md)
 
 ## [Other](https://github.com/mhgamboa/notes/tree/main/Other)
 
@@ -62,6 +70,7 @@ All the notes I take are here so I will always remember.
    3. S3
 6. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8)
    1. Session Authentication
+      - [express-session](https://www.npmjs.com/package/express-session)
       - Cookie flags:
         - `httpOnly: true` -> don't let JS code access cookies
         - `secure: true` -> Only set cookies if website uses https
@@ -79,3 +88,4 @@ All the notes I take are here so I will always remember.
    2. [ajv](https://www.npmjs.com/package/ajv)
    3. [multer](https://www.npmjs.com/package/multer)
    4. [passport](https://www.npmjs.com/package/passport) (See "Security" above)
+9. [Python and SQL course](https://www.youtube.com/watch?v=0sOvCWFmrtA)
