@@ -27,6 +27,10 @@ All the notes I take are here so I will always remember.
 1. [Dates](https://github.com/mhgamboa/notes/blob/main/Javascript/dates.md)
 2. [TypeScript](https://github.com/mhgamboa/notes/blob/main/Javascript/typescript.md)
 
+## [NPM Packages](https://github.com/mhgamboa/notes/tree/main/Javascript)
+
+1. [express-session](https://github.com/mhgamboa/notes/blob/main/Javascript/NPM%20Packages/express-session.md)
+
 ## [Security](https://github.com/mhgamboa/notes/tree/main/Security)
 
 1. [Authentication](https://github.com/mhgamboa/notes/blob/main/Security/authentication.md)
