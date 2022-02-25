@@ -14,7 +14,7 @@ const sessionStore = new MongoStore({
 })
 
 app.use(session({
-    session: "some Secret",
+    session: ".env secret key that signs the cookie",
     resave: false,
     saveUninitialized: true,
     store: sessionStore,

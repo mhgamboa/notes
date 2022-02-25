@@ -4,4 +4,11 @@ Passport is middleware that handles all authentication logic for you.
 
 To utilize Passport Local strategy:
 
-`npm i express mongoose express-session passport`
+1. `npm i express mongoose express-session passport connect-mongo argon2`
+   1. express-session
+   2. passport
+   3. connect-mongo
+
+```
+
+```
