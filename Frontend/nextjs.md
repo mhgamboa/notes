@@ -651,3 +651,75 @@ function MyApp({ Component, pageProps }) {
 ```
 
 ### Head Component
+
+- The **Head component** helps you dynamically manage a components `head` section
+
+1. `import Head from 'next/head'`
+2. In your page/component use `<Head></Head>`. EXAMPLE:
+
+```
+import Head from 'next/head'
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>Welcome to My App</title> {/* Shows up on Tab Header */}
+        <meta name="description" content="Quick summary of page"/> {/* For SEO */}
+      </Head>
+      <Main></Main>
+    </>
+  )
+}
+```
+
+3. You can also apply the head in `pages/_app.js` which will become a default `Head` for all pages
+   - If `Head` is defined in a `page`, it will be used over the default
+
+### Image Component
+
+1. Images should be placed in the `public` folder
+2. `import Image from 'next/image'`
+3. use `<Image>` instead of `<img>`. This helps in a number of ways:
+   - Lowers image resolution for faster downloading
+   - Automatically implements lazy loading
+   - If image is not mapped you can add `placholder='blur'` attribute to enhance lazy loading experience
+     - use `blurDataURL=""` if you want to map
+
+### Absolute Imports & Module lPaths
+
+- Relative imports are normal imports that you've always seen. Example: `import Header from '../components/Header.js`
+- Absolute imports pretty much just makes imports easier to look at
+
+1. Create `jsconfig.json` in the root
+2. In `jsconfig.json`:
+
+```
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+  }
+}
+```
+
+- `"baseURL"` will let you use the following syntax:
+  - `import Header from 'components/Header.js`
+  - Instead of `import Header from '../components/Header.js`
+
+```
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/layout/*": ["components/layout/*"]
+    }
+  }
+}
+```
+
+- `"baseURL"` will let you use the following syntax:
+  - `import Header from 'components/layout/Header.js`
+  - Instead of `import Header from '../components/layout/Header.js`
+- `"paths"` with `"baseUrl` will let you use the following syntax:
+  - `import Header from '@/layout/Header.js`
+  - Instead of `import Header from Header/components/Header.js`
