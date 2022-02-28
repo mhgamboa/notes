@@ -568,3 +568,86 @@ Honestly, this section goes beyond the scope of these notes and what I want to s
 Just know that there are packages called `styled-components` and `styled-jsx` that you can use to style your app.
 
 ## Miscellaneous
+
+### App Layout
+
+#### Seamlessly use Navbars/Headers/Footers/etc in multiple pages of your app
+
+1. In the `components` folder Create `Layout.js`
+
+```
+const Layout = ({children}) => {
+  return (
+    <div>
+      <header>
+        <nav></nav>
+      </header>
+
+      <div>{children}</div>
+
+      <footer></footer>
+    </div>
+  )
+}
+```
+
+2. In \_app.js
+
+```
+import '../styles/globals.css'
+import '../styles/layout.css' //If applicable
+import Layout from '../components/Layout'
+
+function MyApp({ Component, pageProps }) {
+  return (
+  <Layout>
+    <Component {...pageProps} />
+  </Layout>
+  )
+}
+
+export default MyApp
+```
+
+#### To Remove Layout style from certain pages:
+
+```
+// pages/register.js
+import Footer from '../components/Footer.js'
+
+const Register = () => {
+  return <h1>Register Page</h1>
+}
+
+export default Register
+
+Register.getLayout = function PageLayout(page) { // page === Register Page
+  <>
+    {page}
+    <Footer />
+  </>
+}
+```
+
+```
+// pages/_app.js
+
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+
+function MyApp({ Component, pageProps }) {
+  if (component.getLayout) {
+    return Component.getLayout(<Component {...pageProps} />); //Renders Page + Footer (Not Header)
+  }
+
+  return (
+  <>
+    <Header />
+    <Component {...pageProps} />
+    <Footer />
+  </>
+  )
+}
+```
+
+### Head Component
