@@ -736,3 +736,30 @@ To Add TypScript support:
    - `tsconfig.json` sets up settings for TS
    - `tsconfig.json` makes sure TS types are picked up by the TS compiler
 5. Copy `compilerOptions` from `jsconfig.json` into `compilerOptions` from `tsconfig.json`
+
+### Redirects
+
+To Set up Redirects:
+
+1. In `next.config.js` add a function to the `redirects` key.
+   - The Function returns an array of objects (1 object for each redirect)with 3 keys:
+     - `source` -> string
+     - `destination` -> string
+     - `permanent` -> boolean. Tells whether redirect is temporary (307 status code) or permanent (308 status code)
+
+```
+redirects: async ()=> {
+  return [
+    {
+      source: "/about",
+      destination: "/",
+      permanent: false
+    },
+    {
+      source: "/old",
+      destination: "/new",
+      permanent: true
+    }
+  ]
+}
+```
