@@ -763,3 +763,10 @@ redirects: async ()=> {
   ]
 }
 ```
+
+### Environment variables (.env)
+
+1. Next.js uses the `.env.local` to store secret variables
+2. You can access these variables with process.env.KEYVARIABLE
+3. `.env.local` files aren't availble to the browser by default
+   1. To allow the browser access to `.env.local` variables you have to begin the variable with `NEXT_PUBLIC_`. EXAMPLE: -`NEXT_PUBLIC_PUBLIC_URI=secret_key`
