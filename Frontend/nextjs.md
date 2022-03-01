@@ -83,7 +83,7 @@ export default productId;
   - **If the child is not an an `<a>` tag** you must us the `passHref` attribute in the `<Link>` tag
 
 ```
-import Link from 'next/link
+import Link from 'next/link'
 
 const home = () => {
   return (
@@ -723,3 +723,16 @@ export default function Home() {
 - `"paths"` with `"baseUrl` will let you use the following syntax:
   - `import Header from '@/layout/Header.js`
   - Instead of `import Header from Header/components/Header.js`
+
+### TypeScript Support
+
+To Add TypScript support:
+
+1. In the root create a file called `tsconfig.json`
+2. `npm run dev`
+3. You'll get an error prompring you to run `npm add --dev typescript @types/react`
+4. `npm run dev`
+   - This will create a new `tsconfig.json` and `next-env.d.ts` file
+   - `tsconfig.json` sets up settings for TS
+   - `tsconfig.json` makes sure TS types are picked up by the TS compiler
+5. Copy `compilerOptions` from `jsconfig.json` into `compilerOptions` from `tsconfig.json`
