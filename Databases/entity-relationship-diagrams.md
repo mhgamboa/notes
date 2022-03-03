@@ -1,6 +1,6 @@
 # Entity Relationship Diagrams
 
-While you can use [lucidCharts](https://lucid.app/pricing/lucidchart#/pricing) You can also use [app.diagrams.net](https://app.diagrams.net/) (formerly [draw.io](draw.io)) to map out the ERDs.
+While you can use [lucidCharts](https://lucid.app/pricing/lucidchart#/pricing) you can also use [app.diagrams.net](https://app.diagrams.net/) (formerly [draw.io](draw.io)) to map out the ERDs.
 
 ## General Terms
 
@@ -27,10 +27,10 @@ Entities are related to each other, and lines are drawn to shown these connectio
 Example:
 
 ```
-----------------|                |--------------|
+|---------------|                |--------------|
 |Customer       |                |Order         |
 |---------------|                |--------------|
-|PK| Customer_id|-||--|          |PK|Order_ID   |
+|PK| Customer_ID|-||--|          |PK|Order_ID   |
 |FK|Order_ID    |     |--------o<|FK|Customer_ID|
 |  |            |                |  |           |
 |  |            |                |  |           |

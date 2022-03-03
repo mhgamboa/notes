@@ -5,6 +5,16 @@
 3. There is no `src` folder. Only a `pages` folder out of the box
 4. **Components** should have uppercase file names - **pages** should have lowercase file names
 
+## Table of Contents
+
+1. [Routing](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#routing)
+2. [Pre-Rendering & Data Fetching](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#pre-rendering--data-fetching)
+3. [Api Routing](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#api-routing)
+4. [Components](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#components)
+5. [Styling](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#styling)
+6. [Miscellaneous](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#miscellaneous)
+7. [Authentication](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#authentication)
+
 ## Routing
 
 1. The folder structure of the `my-app/pages` Represents your website path
@@ -770,3 +780,116 @@ redirects: async ()=> {
 2. You can access these variables with process.env.KEYVARIABLE
 3. `.env.local` files aren't availble to the browser by default
    1. To allow the browser access to `.env.local` variables you have to begin the variable with `NEXT_PUBLIC_`. EXAMPLE: -`NEXT_PUBLIC_PUBLIC_URI=secret_key`
+
+## Authentication
+
+- Next.js uses an npm package called `next-auth` to handle authorization and authentication
+
+### Next Auth Setup
+
+1. Run `npm i next-auth`
+2. Create a new `auth` folder inside of the `api` folder: `my-app/pages/api/auth`
+3. Inside the `auth` folder create a file called `[...nextauth].js` to catch all the routes. `my-ap/pages/api/auth/[...nextauth].js`
+4. `import NextAuth from next-auth` and `import Providers from next-auth/providers`
+5. Use the following code:
+
+```
+export default NextAuth({
+  providers: [ // Array of providers you want to authenticate with
+    Providers.Github({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET
+    })
+  ]
+})
+```
+
+6. By default the user can navigate to `localhost:3000/api/auth/signin` to sign in and `localhost:3000/api/auth/signout` to sign out
+
+### Implementing Next Auth into your pages
+
+1. `import {signIn, signOut} from 'next-auth/client`
+2. implement `signIn` and `signOut` into the app:
+
+```
+import {signIn, signOut} from 'next-auth/client
+
+export default Component() {
+  return (
+    <div>
+      <Link href='/api/auth/signin'>
+        <a onClick={e=> {
+          e.preventDefault()
+          signIn()
+        }}>
+          Sign In
+        </a>
+      </Link>
+
+      <Link href='/api/auth/signout'>
+        <a onClick={e=> {
+          e.preventDefault()
+          signout()
+        }}>
+          Sign In
+        </a>
+      </Link>
+    </div>
+  )
+}
+```
+
+### Check if user is signed in
+
+1. `import { useSession } from 'next-auth/client`
+2. `const [session, loading] = useSession()` tells if user is signed in, and if we are loading session state.
+   - You don't need to use use state to render data. EXAMPLE:
+
+```
+import { useSession } from 'next-auth/client
+
+export default function Component() {
+  const [session, loading] = useSession()
+  return(
+    <div>
+      <a>
+        { loading ? "" : session ? "login" : "logout" }
+      </a>
+    </div>
+  )
+}
+```
+
+### Protected Routes
+
+If a user is not logged in, we don't want them to see/access certain pages. To prevent users from seeing these "protected" routes you must use the `getsession` method.
+
+1. `import {getSession} from 'next-auth/client`
+2. `const session = await getSession()`
+
+EXAMPLE:
+
+```
+import { useState, useEffect } from 'next/auth'
+import { useSession, signIn } from 'next/auth'
+
+export default function Dashboard() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    const securePage = async () => {
+      const session = await getSession();
+      if (!session) {
+        signIn();
+      } else {
+        setLoading(false);
+      }
+    }
+    securePage();
+  }, [])
+
+  if (loading) return <h2>Loading...</h2>
+
+  return (...)
+}
+```

@@ -21,7 +21,8 @@ All the notes I take are here so I will always remember.
 ## [Frontend](https://github.com/mhgamboa/notes/tree/main/Frontend)
 
 1. [Nextjs](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md)
-1. [Chart.js](https://github.com/mhgamboa/notes/blob/main/Frontend/chartjs.md)
+   1. [node-auth](https://www.youtube.com/playlist?list=PLzYM-WGWIJDQzw0bEJKHCyx_ZDdZ13IWt)
+2. [Chart.js](https://github.com/mhgamboa/notes/blob/main/Frontend/chartjs.md)
 
 ## [Python](https://github.com/mhgamboa/notes/tree/main/Python)
 
@@ -56,9 +57,11 @@ All the notes I take are here so I will always remember.
 ## Stuff I want to learn
 
 1. Next.js (Learning Right Now)
+   1. node-auth (Learning Right Now)
 2. SQL (PostgresQL)
-3. [Typescript](https://youtube.com/playlist?list=PLC3y8-rFHvwi1AXijGTKM0BKtHzVC-LSK)
-4. [AWS](https://aws.amazon.com/pricing/) or [AWS Free Tiers](https://aws.amazon.com/pricing/)
+3. Docker
+4. [Typescript](https://youtube.com/playlist?list=PLC3y8-rFHvwi1AXijGTKM0BKtHzVC-LSK)
+5. [AWS](https://aws.amazon.com/pricing/) or [AWS Free Tiers](https://aws.amazon.com/pricing/)
    1. Compute
       1. EC2?
       2. Lambda? (Free)
@@ -74,11 +77,11 @@ All the notes I take are here so I will always remember.
    1. Other
       1. Amazon SQS (Queue structure)
       1. Elasticache (Redis caching)
-5. Digital Ocean? (May be a stepping stone between Heroku and AWS)
+6. Digital Ocean? (May be a stepping stone between Heroku and AWS)
    1. Compute
    2. Droplets
    3. S3
-6. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8)
+7. Security ([tutorial](https://www.youtube.com/watch?v=F-sFp_AvHc8)
    1. Session Authentication
       - [express-session](https://www.npmjs.com/package/express-session)
       - Cookie flags:
@@ -92,10 +95,10 @@ All the notes I take are here so I will always remember.
    4. Cross Site Request Forgery (`npm i csurf`)
    5. `npm i helmet` -> Sets up a bunch of http headers that ensure security
    6. Passport library to help with implementing security ()
-7. React Query ([tutorial](https://www.youtube.com/watch?v=VtWkSCZX0Ec))
-8. NPM packages
+8. React Query ([tutorial](https://www.youtube.com/watch?v=VtWkSCZX0Ec))
+9. NPM packages
    1. [validator](https://www.npmjs.com/package/validator)
    2. [ajv](https://www.npmjs.com/package/ajv)
    3. [multer](https://www.npmjs.com/package/multer)
    4. [passport](https://www.npmjs.com/package/passport) (See "Security" above)
-9. [Python and SQL course](https://www.youtube.com/watch?v=0sOvCWFmrtA)
+10. [Python and SQL course](https://www.youtube.com/watch?v=0sOvCWFmrtA)
