@@ -749,6 +749,8 @@ To Add TypScript support:
 
 ### Redirects
 
+#### Global Redirects
+
 To Set up Redirects:
 
 1. In `next.config.js` add a function to the `redirects` key.
@@ -772,6 +774,22 @@ redirects: async ()=> {
     }
   ]
 }
+```
+
+#### Redirects in `getServerSideProps`
+
+```
+export async function getServerSideProps(context) {
+  const session = await getSession(context); // This is an example using next-auth
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 ```
 
 ### Environment variables (.env)
@@ -865,7 +883,7 @@ export default function Component() {
 If a user is not logged in, we don't want them to see/access certain pages. To prevent users from seeing these "protected" routes you must use the `getsession` method.
 
 1. `import {getSession} from 'next-auth/client`
-2. `const session = await getSession()`
+2. `const session = await getSession()` -> Returns session object or `null` if user is not logged in
 
 EXAMPLE:
 

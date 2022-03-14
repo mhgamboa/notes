@@ -7,7 +7,7 @@ Learning with [Traversy Media](https://www.youtube.com/watch?v=BCg4U1FzODs).
 - Typescript is a superset of Javascript. It uses **static typing**, meaning variable types are known before compile time.
   - Javascript uses **dynamic typing**.
 - Uses `.ts` and `.tsx` extensions
-- **Typescript must be compiled into Javascript**with the typescript compiler (TSC)!!
+- **Typescript must be compiled into Javascript** with the typescript compiler (TSC)!!
 - **tsconfig.js** file is used to help configure how you want your typescript to work, what you want TS to report, where you want your files to compile to, etc.
 
 ## Types
