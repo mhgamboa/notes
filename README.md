@@ -15,7 +15,7 @@ All the notes I take are here so I will always remember.
 
 1. [MongoDB](https://github.com/mhgamboa/notes/blob/main/DataBases/mongodb.md)
 2. [Mongoose](https://github.com/mhgamboa/notes/blob/main/Databases/mongoose.md)
-3. [PostgresQL](https://github.com/mhgamboa/notes/blob/main/Databases/postgresql.md)
+3. [SQL](https://github.com/mhgamboa/notes/blob/main/Databases/sql.md)
 4. [Entity Relationship Diagrams](https://github.com/mhgamboa/notes/blob/main/Databases/entity-relationship-diagrams.md)
 
 ## [Frontend](https://github.com/mhgamboa/notes/tree/main/Frontend)

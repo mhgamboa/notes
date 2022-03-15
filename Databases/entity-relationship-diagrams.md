@@ -23,6 +23,8 @@ Entities are related to each other, and lines are drawn to shown these connectio
 7. [ X ]>------[ Y ] Y has many X
 8. [ X ]-|-----[ Y ] Y has one X
    etc.
+9. [ X ]>----|-[ Y ] x has one Y **AND** Y has many X
+   etc.
 
 Example:
 
