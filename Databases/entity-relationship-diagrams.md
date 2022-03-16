@@ -51,3 +51,16 @@ Example:
 2. A **Foreign Key** is a Primary Key located in a different record/entity
    - Foreign Keys can be repeated in a table
    - An entity can have multiple different types of foreign keys
+3. **Composite Primary Keys** are when two separate foreign keys are used as a primary key.
+   - Technically you could just create a ficticious PK. It's preference
+
+```
+|---------------|
+|Shipment       |
+|---------------|
+|FK|Customer_ID |
+|FK|Order_ID    |
+|  |            |
+|  |            |
+|---------------|
+```
