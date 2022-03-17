@@ -23,10 +23,19 @@ If running the server locally you can just use all the defaults upon launching t
 
 You can also use the GUI: pgAdmin 4
 
-## psql commands
+## psql Shell Commands
 
-All commands start with a backslash `\`
+**All commands start with a backslash `\`**
 
-1. The "help" command -> `\?`
-2. List all databases -> `\l`
-3. Create a dabase -> `create database [database Name]` OR `CREATE DATABASE [database Name]`
+1. View current version of psql -> `SELECT version();`
+2. The "help" command -> `\?`
+
+### Database Commands
+
+1. List all databases -> `\l`
+2. Create a database -> `create database [DB Name];` OR `CREATE DATABASE [DB Name];`
+   - Tutorial prefers UPPERCASE to differentiate between SQL and non-SQL syntax
+   - **The Semicolon `;` is required!!**
+3. Connect to a Database -> `\c [DB Name];`
+4. Delete a database -> `DROP DATABASE [DB Name];`
+   - **Very Dangerous, be careful when implementing**
