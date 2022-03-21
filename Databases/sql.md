@@ -11,7 +11,7 @@ I'm following [this](https://youtu.be/qw--VYLpxG4) tutorial. Thank you FCC and N
    - **Composite Primary Keys**
    - **Entity Relationship Diagrams (ERD)**
 
-A list of accepted SQL commands can be found [here](https://www.postgresql.org/docs/14/datatype.html)
+A list of accepted SQL commands can be found [here](https://www.postgresql.org/docs/current/datatype.html)
 
 - All commands are made through the SQL Shell (psql).
 - **sql commands use single quotes**
@@ -85,14 +85,39 @@ VALUES (John, Doe, Male, DATE '1990-31-12'); //Date must be YEAR-MONTH-DATE
 
 ### Querying Records
 
+Aggregate query functions can be found [here](https://www.postgresql.org/docs/current/functions-aggregate.html).
+
 1.  **Sorting Records** -> `SELECT * FROM person ORDER BY date_of_birth DESC;` (wILL Default to Ascending order if not specified)
-    - Sort by DOB then last_name -> `SELECT * FROM person ORDER BY date_of_birth, last_name DESC;` (Not recommended.General rule is to only sort by one column)
+    - Sort by DOB then last_name -> `SELECT * FROM person ORDER BY date_of_birth, last_name DESC;`
 2.  **Get Distinct (Not duplicate) records** -> `SELECT DISTINCT country_of_birth FROM person ORDER BY country_of_birth;`
 3.  **Filter Records** -> Use the `WHERE` clause:
     - `SELECT * FROM person WHERE gender = 'Female';`
 4.  **Filter with multiple parameters** -> Use the `AND` or ``OR` clause:
     - `SELECT * FROM person WHERE gender = 'Male' AND country_of_birth = Poland;`
     - `SELECT * FROM person WHERE gender = 'Male' AND (country_of_birth = Poland OR country_of_birth = 'China');`
+5.  **Limit the amount of Records returned** -> Use `LIMIT` or `FETCH` clase:
+    - `SELECT * FROM person FETCH FIRST 10 ROW ONLY;` (The OG. Works with all SQL DBMS)
+    - `SELECT * FROM person LIMIT 10;` (Not an official SQL clause, but works with psql)
+6.  **Skip X amount of Records returned** -> Use `OFFSET` clause:
+    - `SELECT * FROM person OFFSET 5 LIMIT 10;` (Skips first 5 records returned. In my testing order didn't matter between OFFSET and LIMIT)
+7.  **Shorthand Method to Query** -> Use `IN` clause:
+    - `SELECT * FROM person WHERE country_of_birth = 'China' OR country_of_birth = 'Brazil' OR country_of_birth = 'France';` (Longhand Method)
+    - `SELECT * FROM person WHERE country_of_birth IN ('China', 'Brazil', 'France');` (Shorthand Method with `IN`)
+8.  **Filter data between two ranges** -> Use `BETWEEN` clause (which is inclusive of upper and lower limits):
+    - `SELECT * FROM person WHERE date_of_birth BETWEEN DATE '2021-01-01' AND '2021-31-12';`
+9.  **Use regex like searches to filter Data** -> Use `LIKE` or `ILIKE` clause:
+    - `SELECT * FROM person WHERE email LIKE '_____@gmail.%'`
+      - `%` is 0+ wild card characters
+      - `_` is exactly 1 wild card character
+    - `SELECT * FROM person WHERE country_of_birth ILIKE 'p%'`
+      - `ILIKE` makes query case insensitive
+10. **Aggregate/Group data from multiple records** -> Use `GROUP BY` clause with special table functions:
+    - `SELECT country_of_birth, COUNT(*) FROM person GROUP BY country_of_birth ORDER BY country_of_birth;` (`COUNT()` is the special table function)
+    - `HAVING` allows you to filter your aggregations
+      - `SELECT country_of_birth, COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5 ORDER BY country_of_birth;`
+        - (Shows all countries that appear more than 5 times in the Table, and show their count)
+
+`SELECT country_of_birth, COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) BETWEEN 6 AND 100 ORDER BY country_of_birth;`
 
 ## Comparson Operators
 
