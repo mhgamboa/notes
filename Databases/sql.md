@@ -26,14 +26,14 @@ If running the server locally you can just use all the defaults upon launching t
 
 You can also use the GUI: pgAdmin 4
 
-## psql Shell Commands
+## General psql Shell Commands/Basics
 
 **All commands start with a backslash `\`**
 
 1. View current version of psql -> `SELECT version();`
 2. The "help" command -> `\?`
 
-### Database Commands
+## Database Commands
 
 1. List all databases -> `\l`
 2. Create a database -> `create database [DB Name];` OR `CREATE DATABASE [DB Name];`
@@ -43,7 +43,7 @@ You can also use the GUI: pgAdmin 4
 4. Delete a database -> `DROP DATABASE [DB Name];`
    - **Very Dangerous, be careful when implementing**
 
-### Table Commands
+## Table Commands
 
 1. List all tables -> `\dt`
    - Get details of a tables and their relations (Like BIGSERIAL): `\d table_name`
@@ -68,13 +68,14 @@ CREATE TABLE person (
 6. Select one column in a Table -> `SELECT column_name FROM table_name;`
 7. Select two or more columns in a Table -> `SELECT first_name, last_name FROM table_name;`
 
-### Record Commands
+## Record Commands
 
-1. Inserting a Record:
+### Inserting Records
 
 ```
-/* If we used BIGSERIAL as the data type for the PK,
-we don't need to worry about it, psql will handle it for us */
+/* If we use BIGSERIAL as the data type for the PK, we
+don't need to worry about the PK, as psql will handle it for us */
+
 // Email is optional as we didn't define the schema as NOT NULL
 
 INSERT INTO table_name ( first_name, last_name, gender, date_of_birth)
@@ -82,5 +83,29 @@ INSERT INTO table_name ( first_name, last_name, gender, date_of_birth)
 VALUES (John, Doe, Male, DATE '1990-31-12'); //Date must be YEAR-MONTH-DATE
 ```
 
-2. Sorting Records -> `SELECT * FROM person ORDER BY date_of_birth DESC;` (wILL Default to Ascending order if not specified)
-   - Sort by DOB then lName -> `SELECT * FROM person ORDER BY date_of_birth, last_name DESC;` (Not recommended.General rule is to only sort by one column)
+### Querying Records
+
+1.  **Sorting Records** -> `SELECT * FROM person ORDER BY date_of_birth DESC;` (wILL Default to Ascending order if not specified)
+    - Sort by DOB then last_name -> `SELECT * FROM person ORDER BY date_of_birth, last_name DESC;` (Not recommended.General rule is to only sort by one column)
+2.  **Get Distinct (Not duplicate) records** -> `SELECT DISTINCT country_of_birth FROM person ORDER BY country_of_birth;`
+3.  **Filter Records** -> Use the `WHERE` clause:
+    - `SELECT * FROM person WHERE gender = 'Female';`
+4.  **Filter with multiple parameters** -> Use the `AND` or ``OR` clause:
+    - `SELECT * FROM person WHERE gender = 'Male' AND country_of_birth = Poland;`
+    - `SELECT * FROM person WHERE gender = 'Male' AND (country_of_birth = Poland OR country_of_birth = 'China');`
+
+## Comparson Operators
+
+Basic Comparisons:
+
+```
+SELECT 1 = 1; //Returns "t" for true
+SELECT 1 < 1; //Returns "f" for false
+SELECT 1 > 1; //Returns "f" for false
+SELECT 1 <= 1; //Returns "t" for true
+SELECT 1 >= 1; //Returns "t" for true
+SELECT 1 <> 1; //Returns "f" for false (1 is not equal to 1)
+
+```
+
+1. Comparison operators can be used on **any** data type. (numbers, strings, dates etc.)
