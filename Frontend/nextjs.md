@@ -695,6 +695,8 @@ export default function Home() {
    - Automatically implements lazy loading
    - If image is not mapped you can add `placholder='blur'` attribute to enhance lazy loading experience
      - use `blurDataURL=""` if you want to map
+   - When using an external URL for the `src` attribute, you must add it to domains in next.config.js:
+     - `module.exports = {images: {domains: ['htttps://assetsWebsite.com']}}`
 
 ### Absolute Imports & Module lPaths
 

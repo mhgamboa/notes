@@ -14,12 +14,14 @@ Learning with [Traversy Media](https://www.youtube.com/watch?v=BCg4U1FzODs).
 
 Javascript (JS) vs Typescript (TS):
 
-- `let id = 5` vs `let id: number = 5`
-  - setting `id = "6"` will give an error in TS, but not in JS
+- Declarations
+  - `let id = 5` vs `let id: number = 5`
+    - setting `id = "6"` will give an error in TS, but not in JS
 - **You set types by stating the type upon declaration**
   - typescript will infer the type if I don't explicitly state it
 - set an array of items using brackets `[]` with declaration. Example:
-  - `let numberArray = number[] = [1,2,3,4]`
+  - `let numArray = number[] = [1,2,3,4]`
+    - `numArray` can only contain numbers
 - A **Tuple** data type is an array where you explicitly **state the data types for each item at each index**. Example:
   - `let person : [number, string, boolean] = [1, "2", false]`
   - A tuple defined with brackets `let person : [number, string, boolean][] = [1, "2", false]`, is an array of arrays where the subarrays are the defined tuples
