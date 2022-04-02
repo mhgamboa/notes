@@ -21,8 +21,9 @@ Javascript (JS) vs Typescript (TS):
   - `let id = 5` vs `let id: number = 5` (or just `let id: number;`)
     - setting `id = "6"` will give an error in TS, but not in JS
   - typescript will infer the type if I don't explicitly state it
-- Unions allow data points to be two different types. Example:
-  - `let id: string | number = 22`
+- **Unions** allow data points to be two different types. Example:
+  - `let id: string | number = 22` is valid
+  - `let id: string | number = "twenty two"` is also valid
 
 ### Arrays
 
@@ -31,14 +32,16 @@ Javascript (JS) vs Typescript (TS):
     - `numArray` can only contain numbers
   - `let stringArray: string[];`
     - `stringArray` can only contain strings
+  - For an array of types: `let personArray: person[];`
+    - `stringArray` can only contain the `type` of person
 - A **Tuple** data type is an array where you explicitly **state the data types for each item at each index**. Example:
-  - `let person : [number, string, boolean] = [1, "2", false]`
-  - To define an array where each array item is a tuple: `let person : [number, string, boolean][] = [1, "2", false]`
+  - `let personTuple : [number, string, boolean] = [1, "2", false]`
+  - To define an array where each array item is a tuple: `let subArrayTuple : [number, string, boolean][] = [1, "2", false]`
 
 ### Objects
 
-- Technically you can define an object as `let person: object;`, but this doesn't let you add typing to keys.
-  Objects can be defined with the `type` keyword, or as an **interface**
+- Technically you can define an object as `let person: object;`, but this doesn't let you add typing to each key.
+- A better way to define objects is with the **`type`** keyword, or as an **interface**
 
 #### Types
 
@@ -61,6 +64,16 @@ let me:Person = {
 ```
 
 #### Interfaces
+
+## Functions
+
+1. Functions can be typed as well
+   - Technically you can define a function as `let functionName: Function;`, but this doesn't let you type the parameters
+   - A better way to define functions as `functionName: (variable: type) => typeReturned`
+     -Example: `printName: (name: string) => void` (We use void since nothing is returned)
+2. **Function parameters must be typed** or Typescript will give you an error
+   - `const printName = (name) => console.log(name);` -> not valid
+   - `const printName = (name: string) => console.log(name);` -> is valid
 
 ## Compiling
 
