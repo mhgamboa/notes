@@ -14,19 +14,53 @@ Learning with [Traversy Media](https://www.youtube.com/watch?v=BCg4U1FzODs).
 
 Javascript (JS) vs Typescript (TS):
 
+### Basic Types
+
 - Declarations
-  - `let id = 5` vs `let id: number = 5`
+  - **You set types by stating the type upon declaration**
+  - `let id = 5` vs `let id: number = 5` (or just `let id: number;`)
     - setting `id = "6"` will give an error in TS, but not in JS
-- **You set types by stating the type upon declaration**
   - typescript will infer the type if I don't explicitly state it
-- set an array of items using brackets `[]` with declaration. Example:
-  - `let numArray = number[] = [1,2,3,4]`
-    - `numArray` can only contain numbers
-- A **Tuple** data type is an array where you explicitly **state the data types for each item at each index**. Example:
-  - `let person : [number, string, boolean] = [1, "2", false]`
-  - A tuple defined with brackets `let person : [number, string, boolean][] = [1, "2", false]`, is an array of arrays where the subarrays are the defined tuples
 - Unions allow data points to be two different types. Example:
   - `let id: string | number = 22`
+
+### Arrays
+
+- set an array of items using brackets `[]` with declaration. Example:
+  - `let numArray: number[] = [1,2,3,4]`
+    - `numArray` can only contain numbers
+  - `let stringArray: string[];`
+    - `stringArray` can only contain strings
+- A **Tuple** data type is an array where you explicitly **state the data types for each item at each index**. Example:
+  - `let person : [number, string, boolean] = [1, "2", false]`
+  - To define an array where each array item is a tuple: `let person : [number, string, boolean][] = [1, "2", false]`
+
+### Objects
+
+- Technically you can define an object as `let person: object;`, but this doesn't let you add typing to keys.
+  Objects can be defined with the `type` keyword, or as an **interface**
+
+#### Types
+
+1. Defined as a capital letter
+2. to make a property optional add a question mark in its definition
+
+```
+// Definition
+type Person = {
+  name: string;
+  age: number;
+  hobbies?: string[];
+}
+
+// Creation
+let me:Person = {
+  name: "Marcus",
+  age: 28
+}
+```
+
+#### Interfaces
 
 ## Compiling
 
