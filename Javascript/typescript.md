@@ -24,6 +24,11 @@ Javascript (JS) vs Typescript (TS):
 - **Unions** allow data points to be two different types. Example:
   - `let id: string | number = 22` is valid
   - `let id: string | number = "twenty two"` is also valid
+- You can set up variables to have **any** data type with the `any` and `unknown` keywords. Example: `let id: any;`
+  - Differences between `any` and `unknown`:
+    - You can't assign a variable with type `unknown` to another variable
+    - You can access properties of `any`, you can't access properties of `unknown`. This is to prevent errors
+    - **`any` is saying I don't care. `unknown` is saying I don't know**
 
 ### Arrays
 
@@ -67,13 +72,14 @@ let me:Person = {
 
 ## Functions
 
-1. Functions can be typed as well
-   - Technically you can define a function as `let functionName: Function;`, but this doesn't let you type the parameters
-   - A better way to define functions as `functionName: (variable: type) => typeReturned`
-     -Example: `printName: (name: string) => void` (We use void since nothing is returned)
-2. **Function parameters must be typed** or Typescript will give you an error
+1. **Function parameters must be typed** or Typescript will give you an error
    - `const printName = (name) => console.log(name);` -> not valid
    - `const printName = (name: string) => console.log(name);` -> is valid
+2. Functions can be typed as well
+   - Technically you can define a function as `let functionName: Function;`, but this doesn't let you type the parameters, or the type of data returned
+   - A better way to define functions as `functionName: (variable: type) => typeReturned`
+     - Example: `printName: (name: string) => void` (We use void since nothing is returned)
+     - Example2: `const minus = (a: number, b: number): number;` (Must take numbers as parameters and return a number)
 
 ## Compiling
 
