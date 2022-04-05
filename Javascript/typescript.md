@@ -46,7 +46,8 @@ Javascript (JS) vs Typescript (TS):
 ### Objects
 
 - Technically you can define an object as `let person: object;`, but this doesn't let you add typing to each key.
-- A better way to define objects is with the **`type`** keyword, or as an **interface**
+- A better way to define objects (AKA classes) is as a **type** keyword, or as an **interface**
+- It is perfectly ok for types to extend interfaces, and vice versa (see below on how to extend)
 
 #### Types
 
@@ -68,7 +69,53 @@ let me:Person = {
 }
 ```
 
+- Types can also be extended:
+
+```
+// Definition of X
+type X = {
+  a: string;
+  b: number;
+}
+
+// Creation of Y, which includes definition of X
+type Y = x & {
+  a: string;
+  b: number;
+}
+```
+
 #### Interfaces
+
+```
+// Definition
+interface Person {
+  name: string;
+  age: number;
+  hobbies?: string[];
+}
+
+// Creation
+let me: Person = {
+  name: "Marcus",
+  age: 28
+}
+```
+
+- Interfaces can also be extended:
+
+```
+// Definition of X
+interface Person {
+  name: string;
+  age: number;
+}
+
+// Creation of Guy, which includes definition Person
+interface Guy extends Person {
+  facialHair?: boolean;
+}
+```
 
 ## Functions
 
@@ -80,6 +127,8 @@ let me:Person = {
    - A better way to define functions as `functionName: (variable: type) => typeReturned`
      - Example: `printName: (name: string) => void` (We use void since nothing is returned)
      - Example2: `const minus = (a: number, b: number): number;` (Must take numbers as parameters and return a number)
+     - We use `void` when a function returns undefined
+     - We use `never` when a function doesn't return anything (throwing an error, or if defined return types have become impossible to return)
 
 ## Compiling
 
