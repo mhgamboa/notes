@@ -14,7 +14,7 @@ Haha lol.
 
 ## Components
 
-You can type React Functional Components (RFC) with `const functionName: React.FC = () => {}`.
+- You can type React Functional Components (RFC) with `const functionName: React.FC = () => {}`
 
 ```
 const Header = () => {
