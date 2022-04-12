@@ -27,7 +27,9 @@ const Header = () => {
 ```
 const Header: React.FC = () => {
   return <header>{T`Harry's header`}</header>
-}
+}.
 // OR
 function Header(): React.ReactElement {}
 ```
+
+There's a great discussion on declaring React functions [here](https://github.com/typescript-cheatsheets/react#function-components). Declarations can be done either normally, with `JSX.Element`, or as inline type declarations. Lots of people say to just avoid React.FC altogether.
