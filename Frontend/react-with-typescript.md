@@ -14,22 +14,26 @@ Haha lol.
 
 ## Components
 
-- You can type React Functional Components (RFC) with `const functionName: React.FC = () => {}`
+- You can type React Functional Components (RFC) with in different ways:
 
 ```
 const Header = () => {
-  return <header>{T`Harry's header`}</header>
+  return <header>{`header content`}</header>
 }
 ```
 
 **VS**
 
 ```
-const Header: React.FC = () => {
-  return <header>{T`Harry's header`}</header>
-}.
-// OR
-function Header(): React.ReactElement {}
+const Header: React.FC = () => {return <header>{`header content`}</header>};
 ```
 
-There's a great discussion on declaring React functions [here](https://github.com/typescript-cheatsheets/react#function-components). Declarations can be done either normally, with `JSX.Element`, or as inline type declarations. Lots of people say to just avoid React.FC altogether.
+**VS**
+
+`function Header(): React.ReactElement {}`
+
+**VS**
+
+`function Header(): JSX.Element {}`
+
+There's a great discussion on declaring React functions [here](https://github.com/typescript-cheatsheets/react#function-components). Declarations can be done either normally, with `JSX.Element`, or as inline type declarations. But lots of people say to just avoid `React.FC` altogether
