@@ -1,6 +1,6 @@
 # React With Typescript
 
-I'm following [this](https://youtube.com/playlist?list=PLC3y8-rFHvwi1AXijGTKM0BKtHzVC-LSK) tutorial. Thank you Codevolution for your awesome education materials!
+I'm following [this](https://youtube.com/playlist?list=PLC3y8-rFHvwi1AXijGTKM0BKtHzVC-LSK) tutorial, **but for future reference take a look at the [Typescript cheatsheet](https://github.com/typescript-cheatsheets/react)**. Thank you Codevolution (and typescript-cheatsheets) for your awesome education materials!
 
 1. Use `.ts` and `.tsx` files instead of `.js` and `.jsx` files
 
