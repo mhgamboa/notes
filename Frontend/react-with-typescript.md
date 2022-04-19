@@ -6,10 +6,17 @@ I'm following [this](https://youtube.com/playlist?list=PLC3y8-rFHvwi1AXijGTKM0BK
 
 ## Typing Props
 
-1. When you pass props to a child component, the props' data types must be predefined within the child component. Example:
+1. When typing props (Which are an object), [type them as interfaces I guess](https://github.com/typescript-cheatsheets/react#types-or-interfaces)
+2. When you pass props to a child component, the props' data types must be predefined within the child component. Example:
 
 ```
-Haha lol.
+interface ChildProps = {
+  message: string;
+  setState: React.Dispatch<React.SetStateAction<string | number>>; // If you hover over setState definition, you'll see the "type"
+};
+
+const childComponent = ({ message, setState }: ChildProps) => <div>{message}</div>;
+const childComponent: react.FC<ChildProps> = ({ message, setState }) => <div>{message}</div>;
 ```
 
 ## Components
