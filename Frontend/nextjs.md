@@ -3,7 +3,7 @@
 1. `npx create-next-app` (or `npx create-next-app --example with-tailwindcss with-tailwindcss-app`)
 2. Run `npm run dev` instead of `npm start` with create-react-app
 3. There is no `src` folder. Only a `pages` folder out of the box
-4. **Components** should have uppercase file names - **pages** should have lowercase file names (depending on personal preference)
+4. **Components** should have uppercase file names - **pages** should have lowercase file names (depending on personal preferences)
 
 ## Table of Contents
 
