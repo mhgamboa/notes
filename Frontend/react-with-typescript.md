@@ -19,6 +19,8 @@ const childComponent = ({ message, setState }: ChildProps) => <div>{message}</di
 const childComponent: react.FC<ChildProps> = ({ message, setState }) => <div>{message}</div>;
 ```
 
+- Se above for passing `state` and `setState` through props
+
 ## Components
 
 - You can type React Functional Components (RFC) with in different ways:
