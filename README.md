@@ -24,6 +24,7 @@ All the notes I take are here so I will always remember.
    1. [node-auth](https://www.youtube.com/playlist?list=PLzYM-WGWIJDQzw0bEJKHCyx_ZDdZ13IWt)
 2. [Chart.js](https://github.com/mhgamboa/notes/blob/main/Frontend/chartjs.md)
 3. [React With Typescript](https://github.com/mhgamboa/notes/blob/main/Frontend/react-with-typescript.md)
+4. [TanStack Query (React Query v4)](https://github.com/mhgamboa/notes/blob/main/Frontend/react-query.md)
 
 ## [Python](https://github.com/mhgamboa/notes/tree/main/Python)
 
