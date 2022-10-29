@@ -8,7 +8,19 @@ Learning with [Traversy Media](https://www.youtube.com/watch?v=BCg4U1FzODs).
   - Javascript uses **dynamic typing**
 - Uses `.ts` and `.tsx` extensions
 - **Typescript must be compiled into Javascript** with the typescript compiler (TSC)!!
-- **tsconfig.js** file is used to help configure how you want your typescript to work, what you want TS to report, where you want your files to compile to, etc.
+- **tsconfig.json** file is used to help configure how you want your typescript to work, what you want TS to report, where you want your files to compile to, etc.
+- to install typescript you must have node installed:
+  - `npm i typescript` to install into a project or `npm i typescript -g` to install globally
+- To compile your Typescript in Javascript run `tsc` (nothing else. Just `tsc`)
+
+### tsconfig.json
+
+- run `tsc --config` to create a tsconfig.json (typescript must be installed. See above)
+- `target` defines the ecmascript standard you want to follow (es2016/es2017 etc.)
+- `module`
+- `rootdir` defines where the Typescript files are (ex: `./src`)
+- `outdir` defines where the compiled Javascript files go (ex: `./dist`)
+- `noEmitOnError`: prevents compiling if errors exist
 
 ## Types
 
