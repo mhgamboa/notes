@@ -56,7 +56,13 @@ All the notes I take are here so I will always remember.
 1. [ESLint](https://github.com/mhgamboa/notes/blob/main/Other/eslint.md)
 1. [Husky](https://github.com/mhgamboa/notes/blob/main/Other/husky.md)
 
-## Stuff I want to learn
+## My Learning pathway
+
+1. Prisma
+2. Railway.app
+3. next-auth
+
+## Stuff I want to learn Someday
 
 1. SQL (PostgresQL)
 2. Docker
