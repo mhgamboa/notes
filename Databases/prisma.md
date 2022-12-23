@@ -2,6 +2,8 @@
 
 A huge thank you to Grégory D'Angelo for his free course [Build a Full-Stack App with Next.js, Supabase & Prisma](https://themodern.dev/courses/build-a-fullstack-app-with-nextjs-supabase-and-prisma-322389284337222224). I could not have learned all this without you.
 
+NOTE: You can't use Prisma directly on the client-side. You must use getServerSideProps/getStaticProps(or whatever Next 13 is), or submit to the `pages/api` directory (or whatever the next 13 equivalent is)
+
 ## Table of Contents
 
 1. [Setup/Installation](https://github.com/mhgamboa/notes/blob/main/Databases/prisma.md#setupinstallation)
@@ -9,7 +11,7 @@ A huge thank you to Grégory D'Angelo for his free course [Build a Full-Stack Ap
    - [Code generated in schema.prisma with `npx prisma init`](https://github.com/mhgamboa/notes/blob/main/Databases/prisma.md#code-generated-in-schemaprisma-with-npx-prisma-init)
    - [prisma.schema models](https://github.com/mhgamboa/notes/blob/main/Databases/prisma.md#prismaschema-models)
 3. [Prisma Client](https://github.com/mhgamboa/notes/blob/main/Databases/prisma.md#prisma-client)
-4. [Tables](https://github.com/mhgamboa/notes/blob/main/Databases/prisma.md#tables)
+4. [Creating & Managing Tables](https://github.com/mhgamboa/notes/blob/main/Databases/prisma.md#creating--managing-tables)
 5. [Prisma Studio](https://github.com/mhgamboa/notes/blob/main/Databases/prisma.md#prisma-studio)
 
 ## Setup/Installation
@@ -92,6 +94,12 @@ model ModelName {
    - This reads the `generator` block from `schema.prisma` to know which generator to use
    - If unspecified the output can be found in `./node_modules/.prisma/client`
    - This ensures that you only have to worry about your data, and not SQL queries
+4. NOTE: You can't use Prisma on the client-side.
+
+```
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+```
 
 ## Creating & Managing Tables
 
@@ -109,3 +117,14 @@ model ModelName {
 
 1. Prisma Studio is a database client to explore and manipulate your data
 2. Run `npx prisma studio` and navigate to [http://localhost:5555/](http://localhost:5555/) to view it
+
+## Queries
+
+First you must import the client:
+
+```
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+```
+
+2. Generally operations follow the following format: `prisma.[tableName].[query]()`

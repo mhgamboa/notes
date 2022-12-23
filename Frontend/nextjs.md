@@ -14,6 +14,14 @@
 5. [Styling](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#styling)
 6. [Miscellaneous](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#miscellaneous)
 7. [Authentication](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#authentication)
+8. **[Next 13](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#next-13)**
+   - [App Directory](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#app-directory)
+     - [Routing](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#routing)
+       - [Layouts](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#layouts)
+       - [loading.tsx](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#loading.tsx)
+       - [error.tsx](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#error.tsx)
+     - [Components](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#components)
+     - [Caching](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#caching)
 
 ## Routing
 
@@ -275,7 +283,7 @@ export async function getStaticProps() {
 
 ##### SSG with data in Dynamic routes
 
-1. `getStaticPaths()` must receive an argument `getStaticPaths(context)`. `context` is an object with a key called params that allows you to acces the URL params.
+1. `getStaticProps()` must receive an argument `getStaticProps(context)`. `context` is an object with a key called params that allows you to acces the URL params.
 2. You must use `getStaticPaths()` which tells Next.js all the possible paths of `[postId].js` that will exist.
    - `getStaticPaths()` must return an object with a `paths` key, which is an array of objects relating to each each unique dynamic param
      - Each object must have the the following key/value pair: `params: { [filename]: fetchResult. }` to correctly route the data
@@ -913,3 +921,68 @@ export default function Dashboard() {
   return (...)
 }
 ```
+
+## Next 13
+
+The new way to do things with Next.js 13. Might make everything above about SSG, SSR, ISR, and routing obselete. The biggest thing to know is that Next.js 13 uses the `/app` directory instead of the `/page` directory, and that all components and pages are server components (SSR) by default (Used to be SSG)
+
+### Routing
+
+1. To create the index page you create `./app/page.tsx`
+2. To create pages for different routes, you create the directory, then put `page.tsx` inside of it
+   - Example: `./app/about/page.tsx`
+3. When a directory is surounded by brackets it is a dynamic route
+4. When a directory is surounded by parentheses it is hidden by the routing system
+   - This is to allow you work on routes, without them being public
+
+#### Layouts
+
+1. Layouts live in the same directory as `page.tsx` files do
+2. Layouts are a ui that are used accross multiple webpages (Think Footer, Navbar, etc.)
+3. Next.js 13 implements **Nested Layouts** meaning the child routes inherit the defined parent layout
+   - The layout does not get re-rendered everytime, improving performance
+
+#### loading.tsx
+
+`loading.tsx` is like `page.tsx`, but is only shown while the SSR is occuring
+
+#### error.tsx
+
+`error.tsx` is like `page.tsx`, but is only shown if there is any kind of error (something breaks, data not fetched, etc.
+
+### Components
+
+1. Components can live in the same directory as `page.tsx` files do.
+   - There is no longer a need for a separate `components` folder
+
+### Caching
+
+**ISR and SSG are no longer a thing.** Instead you tell your components how often then cache.
+
+1. Caching intervals are added to your fetching functions. Example:
+
+```
+// SSR (never cache)
+async function getUserData() {
+  const res = away fetch(./route, {cache: 'no-store'});
+  return res.json()
+}
+
+// ISR (cache incrementally)
+async function getUserData() {
+  const res = away fetch(./route, {
+      next: {revalidate: 60} //Number of seconds
+    });
+  return res.json()
+}
+
+
+```
+
+#### generateStaticParams()
+
+`generateStaticParams()` is like getStaticPaths: it allows you to pre-render dynamic routes
+
+)
+
+### React Suspense
