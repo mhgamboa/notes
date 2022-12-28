@@ -10,6 +10,7 @@ All the notes I take are here so I will always remember.
 4. [concurrently](https://github.com/mhgamboa/notes/blob/main/Backend/concurrently.md)
 5. [cheerio](https://github.com/mhgamboa/notes/blob/main/Backend/cheerio.md)
 6. [cron](https://github.com/mhgamboa/notes/blob/main/Backend/cron.md)
+7. [Next.js](https://github.com/mhgamboa/notes/blob/main/Backend/nextjs.md)
 
 ## [Databases](https://github.com/mhgamboa/notes/tree/main/Databases)
 

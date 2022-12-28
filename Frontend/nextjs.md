@@ -16,12 +16,13 @@
 7. [Authentication](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#authentication)
 8. **[Next 13](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#next-13)**
    - [App Directory](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#app-directory)
-     - [Routing](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#routing)
+     - [Routes](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#routes)
        - [Layouts](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#layouts)
        - [loading.tsx](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#loading.tsx)
        - [error.tsx](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#error.tsx)
      - [Components](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#components)
      - [Caching](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#caching)
+     - [Data Mutation](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#data-mutation)
 
 ## Routing
 
@@ -706,7 +707,7 @@ export default function Home() {
    - When using an external URL for the `src` attribute, you must add it to domains in next.config.js:
      - `module.exports = {images: {domains: ['htttps://assetsWebsite.com']}}`
 
-### Absolute Imports & Module lPaths
+### Absolute Imports & Module Paths
 
 - Relative imports are normal imports that you've always seen. Example: `import Header from '../components/Header.js`
 - Absolute imports pretty much just makes imports easier to look at
@@ -924,7 +925,7 @@ export default function Dashboard() {
 
 ## Next 13
 
-The new way to do things with Next.js 13. Might make everything above about SSG, SSR, ISR, and routing obselete. The biggest thing to know is that Next.js 13 uses the `/app` directory instead of the `/page` directory, and that all components and pages are server components (SSR) by default (Used to be SSG)
+The new way to do things with Next.js 13. Might make everything above about SSG, SSR, ISR, and routing obselete. The biggest thing to know is that Next.js 13 uses the `/app` directory instead of the `/page` directory, and that all components and pages are server components (SSR) by default (Used to be SSG). To have componets be **client side rendered** you must insert `use client'` at the top of the componenet
 
 ### Routing
 
@@ -979,10 +980,26 @@ async function getUserData() {
 
 ```
 
+### Data Mutation
+
+1. All data mutation must happen on client side components (Which is to say it can't occur on the server). You must insert `use client;`
+2. If the data edits whats on the page you'll probably have
+
+```
+import {useRouter} from 'next/navigation';
+
+export default function componentName() {
+const router = useRouter();
+
+
+const fetch method = async function() {
+  router.refresh();
+}
+}
+```
+
 #### generateStaticParams()
 
 `generateStaticParams()` is like getStaticPaths: it allows you to pre-render dynamic routes
-
-)
 
 ### React Suspense
