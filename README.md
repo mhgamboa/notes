@@ -11,6 +11,7 @@ All the notes I take are here so I will always remember.
 5. [cheerio](https://github.com/mhgamboa/notes/blob/main/Backend/cheerio.md)
 6. [cron](https://github.com/mhgamboa/notes/blob/main/Backend/cron.md)
 7. [Next.js](https://github.com/mhgamboa/notes/blob/main/Backend/nextjs.md)
+8. [Next Auth](https://github.com/mhgamboa/notes/blob/main/Backend/next-auth.md)
 
 ## [Databases](https://github.com/mhgamboa/notes/tree/main/Databases)
 
@@ -23,7 +24,7 @@ All the notes I take are here so I will always remember.
 ## [Frontend](https://github.com/mhgamboa/notes/tree/main/Frontend)
 
 1. [Nextjs](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md)
-   1. [node-auth](https://www.youtube.com/playlist?list=PLzYM-WGWIJDQzw0bEJKHCyx_ZDdZ13IWt)
+   1. [next-auth](https://www.youtube.com/playlist?list=PLzYM-WGWIJDQzw0bEJKHCyx_ZDdZ13IWt)
 2. [Chart.js](https://github.com/mhgamboa/notes/blob/main/Frontend/chartjs.md)
 3. [React With Typescript](https://github.com/mhgamboa/notes/blob/main/Frontend/react-with-typescript.md)
 4. [TanStack Query (React Query v4)](https://github.com/mhgamboa/notes/blob/main/Frontend/react-query.md)
@@ -61,8 +62,8 @@ All the notes I take are here so I will always remember.
 ## My Learning pathway
 
 1. Prisma
-2. Railway.app
-3. next-auth
+2. next-auth
+3. Railway.app
 
 ## Stuff I want to learn Someday
 

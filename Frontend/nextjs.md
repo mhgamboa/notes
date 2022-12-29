@@ -15,14 +15,16 @@
 6. [Miscellaneous](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#miscellaneous)
 7. [Authentication](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#authentication)
 8. **[Next 13](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#next-13)**
-   - [App Directory](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#app-directory)
-     - [Routes](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#routes)
-       - [Layouts](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#layouts)
-       - [loading.tsx](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#loading.tsx)
-       - [error.tsx](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#error.tsx)
-     - [Components](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#components)
-     - [Caching](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#caching)
-     - [Data Mutation](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#data-mutation)
+   - [Routing](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#routing)
+     - [Layouts](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#layouts)
+     - [loading.tsx](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#loading.tsx)
+     - [error.tsx](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#error.tsx)
+   - [Components](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#components)
+     - [Server vs Client Components](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#server-vs-client-components)
+   - [Caching](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#caching)
+   - [Data Mutation](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#data-mutation)
+     - [generateStaticParams](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#generateStaticParams)
+   - [React Suspense](https://github.com/mhgamboa/notes/blob/main/Frontend/nextjs.md#react-suspense)
 
 ## Routing
 
@@ -956,6 +958,12 @@ The new way to do things with Next.js 13. Might make everything above about SSG,
 1. Components can live in the same directory as `page.tsx` files do.
    - There is no longer a need for a separate `components` folder
 
+#### Server vs Client components
+
+1. If you render a server component in a client component, it will be rendered as a client component
+2. If you render a client component in a server component, it will be rendered as a client component
+3. If you render a server component in a client component as `{children}`, it will be rendered as a client component
+
 ### Caching
 
 **ISR and SSG are no longer a thing.** Instead you tell your components how often then cache.
@@ -998,7 +1006,7 @@ const fetch method = async function() {
 }
 ```
 
-#### generateStaticParams()
+#### generateStaticParams
 
 `generateStaticParams()` is like getStaticPaths: it allows you to pre-render dynamic routes
 
