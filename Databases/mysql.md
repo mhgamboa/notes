@@ -23,7 +23,7 @@ CREATE TABLE emails (
 
 #### Schema Migrations
 
-- tl;dr a schema migration is a folder full of sql statements
+- tl;dr a schema migration is a folder full of sql statements that help keep track of changes to your database schema.
 
 ### Data Types
 
@@ -71,9 +71,11 @@ CREATE TABLE emails (
 #### Dates
 
 - **DATE** - Use this if you only need to store the date, and not the time
-- **DateTime** - Dates/Times range from 1000 to 9999. **JUST USE DATETIME OVER TIMESTAMP**
-- **TimeStamp** - Dates/Times only range form 1970 to 2038. MYSQL Will convert to UTC upon Storage, and the local timezone upon retrival. **DON'T USE TIMESTAMP**
+- **DATETIME** - Dates/Times range from 1000 to 9999. **JUST USE DATETIME OVER TIMESTAMP**
+- **TIMESTAMP** - Dates/Times only range form 1970 to 2038. MYSQL Will convert to UTC upon Storage, and the local timezone upon retrival. **DON'T USE TIMESTAMP**
 
 #### JSON
 
 MySQL has support for JSON
+
+## Indexes
